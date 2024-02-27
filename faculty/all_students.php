@@ -59,6 +59,8 @@
                 <div class="detail"> Hobbies : <?= $fetch_students['hobbies']; ?></div>
                 <div class="detail"> Address : <?= $fetch_students['address']; ?></div>
             </div>
+
+            
             <?php
          }
       }else{

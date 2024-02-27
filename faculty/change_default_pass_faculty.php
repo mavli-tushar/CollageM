@@ -10,6 +10,8 @@
         header('location:faculty_login.php');
     }
 
+
+    
     $select_faculty_id = "SELECT * FROM `faculty` WHERE id = '$faculty_id'";
     $faculty_id_data = mysqli_query($conn, $select_faculty_id);
     $result_faculty_id = mysqli_fetch_assoc($faculty_id_data);
