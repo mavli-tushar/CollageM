@@ -104,7 +104,7 @@
                 <option value="M.COM">M.COM</option>
                 <option value="MSCIT">MSCIT</option>
             </select>
-            <input type="submit" value="add new faculty" name="register" class="option-btn" />
+            <input type="submit" value="add new faculty" name="register" class="option-btnf" />
         </form>
     </section>
 

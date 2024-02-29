@@ -85,7 +85,7 @@
                 <input type="radio" name="gender" value="Male" required> Male
                 <input type="radio" name="gender" value="Female" required style="margin-left: 5rem;"> Female
             </div>
-            <input type="submit" value="add new peon" name="register" class="option-btn" />
+            <input type="submit" value="add new peon" name="register" class="option-btnf" />
         </form>
     </section>
 

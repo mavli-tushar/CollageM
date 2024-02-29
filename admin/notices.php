@@ -77,7 +77,7 @@
                 <option value="student">Student</option>
             </select>
             <textarea name='content' rows='5' placeholder='Notice Content' class='box my_textarea'></textarea>
-            <input type='submit' value='Add Notice' class='option-btn' name='add_notice'>
+            <input type='submit' value='Add Notice' class='option-btnf' name='add_notice'>
         </form>
 
     </section>

@@ -77,6 +77,46 @@ section {
   background-color: var(--black);
 }
 
+
+
+.btnf,
+.option-btnf,
+.delete-btnf {
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  width: 50%;
+  padding: 1rem 4rem;
+  color: var(--white);
+  font-size: 1.6rem;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.btnf {
+  background-color: var(--main-color);
+}
+
+.option-btnf {
+  background-color: var(--orange);
+}
+
+.delete-btnf {
+  background-color: var(--red);
+}
+
+.btnf:hover,
+.option-btnf:hover,
+.delete-btnf:hover {
+  background-color: var(--black);
+}
+
+
+
+
+
+
+
 .message {
   position: sticky;
   top: 0;
@@ -144,12 +184,12 @@ section {
 
 .form-container form {
   background-color: var(--white);
-  border-radius: 0.5rem;
-  border: var(--border);
+  border-radius: 10rem;
+  
   box-shadow: var(--box-shadow);
   text-align: center;
   padding: 2rem;
-  width: 50rem;
+  width: 75rem;
 }
 
 .form-container form h3 {

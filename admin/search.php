@@ -9,46 +9,6 @@
     if(!isset($admin_id)){
         header('location:admin_login.php');
     }
-
-    if (isset($_POST['register'])) {
-        
-        $stud_id = $_POST['stud_id'];
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
-        $password = sha1($_POST['password']);
-        $gender = $_POST['gender'];
-        $date_of_birth = $_POST['date_of_birth'];
-        $course = $_POST['course'];
-        $fees = $_POST['fees'];
-        $hobbies = implode(",",$_POST['hobby']);
-        $email = $_POST['email'];
-        $phone_no = $_POST['phone_no'];
-        $address = $_POST['address'];
-        
-        $full_name = $fname." ".$lname;
-
-        $select_student = "SELECT * FROM `students` WHERE stud_id = '$stud_id'";
-        $student_id_data = mysqli_query($conn, $select_student);
-
-        if(mysqli_num_rows($student_id_data) > 0){
-            $message[] = 'Student ID already exists!';
-        }else{
-            $insert_student = "INSERT INTO `students`(stud_id, admin_id, fname, lname, email, password, phone_no, gender, DOB, course, hobbies, address, fees) VALUES ('$stud_id', '$admin_id', '$fname', '$lname', '$email', '$password', '$phone_no', '$gender', '$date_of_birth', '$course', '$hobbies', '$address', '$fees')";
-            $data = mysqli_query($conn, $insert_student);
-        
-            $insert_user = "INSERT INTO `users`(stud_id, name, email, password) VALUES('$stud_id','$full_name', '$email', '$password')";
-            $data = mysqli_query($conn, $insert_user);
-
-            if($data){
-                $message[] = 'new student registered!';
-                // header('location:dashboard.php');
-            }else{
-                $message[] = 'failed to add new student!';
-            }
-        }
-
-    }
-
     if(isset($_GET['delete'])){
         $delete_id = $_GET['delete'];
         $delete_user = $_GET['stud_id'];
@@ -142,7 +102,7 @@ background-color: var(--orange);
                 <div class="my-flex-box">
                     <image src="<?php echo '../'.$fetch_student['student_img'] ?>" class="all_image" />
                 </div>
-                <div class="id">Student ID : <?= $fetch_student['stud_id']; ?></div>
+                <div class="id">Student ID : <?= $fetch_student['id']; ?></div>
                 <div class="name"><?= $fetch_student['fname']." ".$fetch_student['lname']; ?></div>
                 <div class="content"><?= $fetch_student['email']; ?></div>
                 <div class="detail">Gender : <?= $fetch_student['gender']; ?></div>
@@ -152,8 +112,8 @@ background-color: var(--orange);
                 <div class="detail">Fees Status : <?= $fetch_student['fees']; ?></div>
                 <div class="detail">Address : <?= $fetch_student['address']; ?></div>
                 <div class="my-flex-btn">
-                    <a href="update_student.php?stud_id=<?= $fetch_student['stud_id']; ?>" class="option-btn">Update</a>
-                    <a href="search.php?delete=<?= $fetch_student['id']; ?>&stud_id=<?= $fetch_student['stud_id'] ?>"
+                    <a href="update_student.php?stud_id=<?= $fetch_student['id']; ?>" class="option-btn">Update</a>
+                    <a href="search.php?delete=<?= $fetch_student['id']; ?>&stud_id=<?= $fetch_student['id'] ?>"
                     class="delete-btn" onclick="return confirm('delete this student details?');">Delete</a>
                 </div>
             </div>

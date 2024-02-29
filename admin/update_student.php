@@ -11,7 +11,7 @@
     }
 
     $stud_id = $_GET['stud_id'];
-    $select_stud = "SELECT * FROM `students` WHERE stud_id = '$stud_id'";
+    $select_stud = "SELECT * FROM `students` WHERE id = '$stud_id'";
     $stud_id_data = mysqli_query($conn, $select_stud);
     $result = mysqli_fetch_assoc($stud_id_data);
 
@@ -26,10 +26,10 @@
 
         $full_name = $fname." ".$lname;
 
-        $update_student = "UPDATE `students` SET fees = '$fees' WHERE stud_id = '$stud_id'";
+        $update_student = "UPDATE `students` SET fees = '$fees' WHERE id = '$stud_id'";
         $data = mysqli_query($conn, $update_student);
     
-        $update_user = "UPDATE `users` SET name = '$full_name', email = '$email' WHERE stud_id = '$stud_id'";
+        $update_user = "UPDATE `users` SET name = '$full_name', email = '$email' WHERE id = '$stud_id'";
         $data = mysqli_query($conn, $update_user);
 
         if($data){
@@ -77,8 +77,8 @@
         <form action="" method="post">
             <h3>update student's fees details</h3>
 
-            <input type="text" name="stud_id" readonly placeholder="Stud ID (Ex: p101)" readonly
-                value="<?= $result['stud_id']; ?>" required class="box" />
+            <input type="text" name="stud_id" readonly placeholder="Stud ID" readonly
+                value="<?= $result['id']; ?>" required class="box" />
             <input type="text" name="fname" readonly placeholder="First Name" value="<?= $result['fname']; ?>" required
                 class="box" />
             <input type="text" name="lname" readonly placeholder="Last Name" value="<?= $result['lname']; ?>" required
@@ -99,8 +99,8 @@
                 ?>>Paid</option>
             </select>
             <div class="my-flex-btn">
-                <input type="submit" value="save" name="update" class="option-btn" />
-                <a href="students.php" class="delete-btn">go back</a>
+                <input type="submit" value="save" name="update" class="option-btnf" />
+                <a href="students.php" class="delete-btnf" >go back</a>
             </div>
         </form>
     </section>

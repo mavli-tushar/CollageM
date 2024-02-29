@@ -87,7 +87,7 @@
     <input type="radio" name="gender" value="Female" <?= $result['gender'] === 'Female' ? 'checked' : '' ?> required style="margin-left: 5rem;"> Female
 </div>
             <div class="my-flex-btn">
-                <input type="submit" value="save" name="update" class="option-btn" />
+                <input type="submit" value="save" name="update" class="option-btnf" />
                 <a href="peons.php" class="delete-btn">go back</a>
             </div>
         </form>
