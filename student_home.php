@@ -53,7 +53,7 @@
 
             <div class="box">
                 <h3>Student ID</h3>
-                <p><?= $result['stud_id']; ?></p>
+                <p><?= $result['id']; ?></p>
             </div>
 
             <div class="box">
