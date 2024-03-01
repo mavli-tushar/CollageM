@@ -11,33 +11,27 @@
     }
 
     if (isset($_POST['register'])) {
-        
-        $peon_id = $_POST['peon_id'];
         $name = $_POST['name'];
         $email = $_POST['email'];
         $phone_no = $_POST['phone_no'];
         $gender = $_POST['gender'];
         $pass = sha1($_POST['password']);        
 
-        $select_peon = "SELECT * FROM `peons` WHERE peon_id = '$peon_id'";
-        $peon_id_data = mysqli_query($conn, $select_peon);
-
-        if(mysqli_num_rows($peon_id_data) > 0){
-            $message[] = 'Peon ID already exists!';
-        }else{
-            $insert_peon = "INSERT INTO `peons`(peon_id, admin_id, name, email, password, phone_no, gender) VALUES ('$peon_id', '$admin_id', '$name', '$email', '$pass', '$phone_no', '$gender')";
+            $insert_peon = "INSERT INTO `peons`(admin_id, name, email, password, phone_no, gender) VALUES ( '$admin_id', '$name', '$email', '$pass', '$phone_no', '$gender')";
             $data = mysqli_query($conn, $insert_peon);
         
+            $peon_id =mysqli_insert_id($conn);
+
             $insert_user = "INSERT INTO `users`(peon_id, name, email, password) VALUES('$peon_id','$name', '$email', '$pass')";
             $data = mysqli_query($conn, $insert_user);
 
             if($data){
                 $message[] = 'new Peon registered!';
-                // header('location:dashboard.php');
+                header('location:dashboard.php');
             }else{
                 $message[] = 'failed to add new peon!';
             }
-        }
+        
     }
 
     if(isset($_GET['delete'])){
@@ -74,8 +68,6 @@
     <section class="form-container">
         <form action="" method="post">
             <h3>add new peon</h3>
-
-            <input type="text" name="peon_id" placeholder="Peon ID (Ex: p101)" required class="box" />
             <input type="text" name="name" placeholder="Peon Name" required class="box" />
             <input type="text" name="email" placeholder="Email ID" required class="box" />
             <input type="password" name="password" readonly value="peon123" placeholder="Password" required
@@ -105,14 +97,14 @@
          while($fetch_peon = mysqli_fetch_assoc($data)){ 
         ?>
             <div class="box">
-                <div class="id"> Peon ID : <?= $fetch_peon['peon_id']; ?></div>
+                <div class="id"> Peon ID : <?= $fetch_peon['id']; ?></div>
                 <div class="name"> Name : <?= $fetch_peon['name']; ?></div>
                 <div class="detail"> Email : <?= $fetch_peon['email']; ?></div>
                 <div class="detail"> Contact No : <?= $fetch_peon['phone_no']; ?></div>
                 <div class="detail"> Gender : <?= $fetch_peon['gender']; ?></div>
                 <div class="my-flex-btn">
-                    <a href="update_peon.php?peon_id=<?= $fetch_peon['peon_id']; ?>" class="option-btn">update</a>
-                    <a href="peons.php?delete=<?= $fetch_peon['id']; ?>&peon_id=<?= $fetch_peon['peon_id'] ?>"
+                    <a href="update_peon.php?peon_id=<?= $fetch_peon['id']; ?>" class="option-btn">update</a>
+                    <a href="peons.php?delete=<?= $fetch_peon['id']; ?>&peon_id=<?= $fetch_peon['id'] ?>"
                         class="delete-btn" onclick="return confirm('delete this peon details?');">delete</a>
                 </div>
             </div>

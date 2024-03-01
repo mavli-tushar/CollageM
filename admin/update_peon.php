@@ -11,7 +11,7 @@
     }
 
     $peon_id = $_GET['peon_id'];
-    $select_peon = "SELECT * FROM `peons` WHERE peon_id = '$peon_id'";
+    $select_peon = "SELECT * FROM `peons` WHERE id = '$peon_id'";
     $peon_id_data = mysqli_query($conn, $select_peon);
     $result = mysqli_fetch_assoc($peon_id_data);
     
@@ -23,7 +23,7 @@
         $phone_no = $_POST['phone_no'];
         $gender = $_POST['gender'];
 
-        $update_peon = "UPDATE `peons` SET name = '$name', email = '$email', phone_no = '$phone_no',gender = '$gender' WHERE peon_id = '$peon_id'";
+        $update_peon = "UPDATE `peons` SET name = '$name', email = '$email', phone_no = '$phone_no',gender = '$gender' WHERE id = '$peon_id'";
         $data = mysqli_query($conn, $update_peon);
     
         $update_user = "UPDATE `users` SET name = '$name', email = '$email' WHERE peon_id = '$peon_id'";
@@ -74,7 +74,7 @@
             <h3>update peon details</h3>
 
             <input type="text" name="peon_id" placeholder="Peon ID (Ex: p101)" readonly
-                value="<?= $result['peon_id']; ?>" required class="box" />
+                value="<?= $result['id']; ?>" required class="box" />
             <input type="text" name="name" placeholder="Peon Name" value="<?= $result['name']; ?>" required
                 class="box" />
             <input type="text" name="email" placeholder="Email ID" value="<?= $result['email']; ?>" required

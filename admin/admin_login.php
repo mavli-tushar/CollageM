@@ -62,7 +62,7 @@
             <p>default username = <span>admin</span> & password = <span>admin123</span></p>
             <input type="text" name="name" required placeholder="enter your username" class="box">
             <input type="password" name="pass" required placeholder="enter your password" class="box">
-            <input type="submit" value="login now" class="btn" name="login">
+            <input type="submit" value="login now" class="btnf" name="login">
         </form>
 
     </section>

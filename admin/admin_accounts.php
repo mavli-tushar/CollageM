@@ -76,7 +76,7 @@
          while($fetch_admin = mysqli_fetch_assoc($data)){ 
         ?>
             <div class="box">
-                <div class="id"> Admin ID : <?= $fetch_admin['admin_id']; ?></div>
+                <div class="id"> Admin ID : <?= $fetch_admin['id']; ?></div>
                 <div class="name"> Name : <?= $fetch_admin['name']; ?></div>
                 <div class="detail"> Email : <?= $fetch_admin['email']; ?></div>
                 <?php
@@ -89,7 +89,7 @@
                                 
                     
                 ?>
-                <a href="admin_accounts.php?delete=<?= $fetch_admin['id']; ?>&admin_id=<?= $fetch_admin['admin_id'] ?>"
+                <a href="admin_accounts.php?delete=<?= $fetch_admin['id']; ?>&admin_id=<?= $fetch_admin['id'] ?>"
                     class="
                     delete-btn" onclick="return confirm('delete this admin?');">delete</a>
             </div>
