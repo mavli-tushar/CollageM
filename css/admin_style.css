@@ -185,7 +185,7 @@ section {
 .form-container form {
   background-color: var(--white);
   border-radius: 10rem;
-  
+  margin-left: 15rem;
   box-shadow: var(--box-shadow);
   text-align: center;
   padding: 2rem;
