@@ -87,7 +87,7 @@
         <form action="" method="post">
             <h3>add new faculty</h3>
             <input type="text" name="name" placeholder="Faculty Name" required class="box" />
-            <input type="text" name="email" placeholder="Email ID" required class="box" />
+            <input type="email" name="email" placeholder="Email ID" required class="box" />
             <input type="password" name="password" readonly value="faculty123" placeholder="Password" required
                 class="box" />
             <input type="text" name="phone_no" placeholder="Contact Number" required class="box" />

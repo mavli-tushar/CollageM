@@ -13,7 +13,7 @@
     $select_faculty_id = "SELECT * FROM `faculty` WHERE id = '$faculty_id'";
     $faculty_id_data = mysqli_query($conn, $select_faculty_id);
     $result_faculty_id = mysqli_fetch_assoc($faculty_id_data);
-    $faculty_id = $result_faculty_id['faculty_id'];
+    $faculty_id = $result_faculty_id['id'];
 
     if(isset($_POST['send_msg'])){
             $name = $_POST['name'];

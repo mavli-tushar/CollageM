@@ -13,7 +13,7 @@
     $select_faculty_id = "SELECT * FROM `faculty` WHERE id = '$faculty_id'";
     $faculty_id_data = mysqli_query($conn, $select_faculty_id);
     $result_faculty_id = mysqli_fetch_assoc($faculty_id_data);
-    $faculty_id = $result_faculty_id['faculty_id'];
+    $faculty_id = $result_faculty_id['id'];
 
     if (isset($_POST['update'])) {
 
@@ -36,7 +36,7 @@
         }
 
         if(!isset($sucMSG)){
-            $update_faculty = "UPDATE `faculty` SET faculty_img = '$folder', name = '$name', email = '$email', phone_no = '$phone_no',gender = '$gender', degree = '$degree' WHERE faculty_id = '$faculty_id'";
+            $update_faculty = "UPDATE `faculty` SET faculty_img = '$folder', name = '$name', email = '$email', phone_no = '$phone_no',gender = '$gender', degree = '$degree' WHERE id = '$faculty_id'";
             $data = mysqli_query($conn, $update_faculty);
         
             $update_user = "UPDATE `users` SET name = '$name', email = '$email' WHERE faculty_id = '$faculty_id'";
@@ -91,8 +91,8 @@
         <form action="" method="post" enctype="multipart/form-data">
             <h3>update student details</h3>
 
-            <input type="text" name="stud_id" placeholder="Stud ID (Ex: p101)" readonly
-                value="<?= $result_faculty_id['faculty_id']; ?>" required class="box" />
+            <input type="text" name="stud_id" readonly
+                value="<?= $result_faculty_id['id']; ?>" required class="box" />
             <input type="file" name="profile_pic" class="box" />
             <input type="text" name="name" placeholder="Name" value="<?= $result_faculty_id['name']; ?>" required
                 class="box" />
@@ -140,7 +140,7 @@
                 <a href="faculty_home.php" class="delete-btn">go back</a>
             </div>
         </form>
-
+                    
     </section>
 
 </body>

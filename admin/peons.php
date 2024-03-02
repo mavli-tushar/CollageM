@@ -59,12 +59,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <link rel="stylesheet" href="../css/admin_style.css" />
 
+    <style>.custom-btn {
+    float: right;
+    display: block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+
+.custom-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-link {
+    color: #fff;
+    text-decoration: none;
+
+}
+
+</style>
+
 </head>
 
 <body>
 
     <?php include '../components/admin_header.php'; ?>
-
+    <button class="custom-btn"><a href="displayPeon.php" class="btn-link">View Peon</a></button>
     <section class="form-container">
         <form action="" method="post">
             <h3>add new peon</h3>
@@ -80,45 +109,6 @@
             <input type="submit" value="add new peon" name="register" class="option-btnf" />
         </form>
     </section>
-
-    <section class="show-notices">
-
-        <h1 class="heading">All Peons </h1>
-
-        <div class="box-container">
-
-            <?php
-        $select_peon = "SELECT * FROM `peons`";
-        $data = mysqli_query($conn, $select_peon);
-
-        $total = mysqli_num_rows($data);
-
-        if($total > 0){
-         while($fetch_peon = mysqli_fetch_assoc($data)){ 
-        ?>
-            <div class="box">
-                <div class="id"> Peon ID : <?= $fetch_peon['id']; ?></div>
-                <div class="name"> Name : <?= $fetch_peon['name']; ?></div>
-                <div class="detail"> Email : <?= $fetch_peon['email']; ?></div>
-                <div class="detail"> Contact No : <?= $fetch_peon['phone_no']; ?></div>
-                <div class="detail"> Gender : <?= $fetch_peon['gender']; ?></div>
-                <div class="my-flex-btn">
-                    <a href="update_peon.php?peon_id=<?= $fetch_peon['id']; ?>" class="option-btn">update</a>
-                    <a href="peons.php?delete=<?= $fetch_peon['id']; ?>&peon_id=<?= $fetch_peon['id'] ?>"
-                        class="delete-btn" onclick="return confirm('delete this peon details?');">delete</a>
-                </div>
-            </div>
-            <?php
-         }
-      }else{
-         echo '<p class="empty">no peons added yet!</p>';
-      }
-   ?>
-
-        </div>
-
-    </section>
-
 </body>
 
 <script src="../js/admin_logic1.js"></script>

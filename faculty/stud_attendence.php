@@ -204,6 +204,7 @@ if(isset($_POST['submit_attendance'])){
 
 <script>document.getElementById('coursSelected').addEventListener('change', function() {
     var course = document.getElementById('coursSelected').value;
+    document.getElementById('courseField').value = course;
     var year = document.getElementById('year').value;
     var division = document.getElementById('division').value;
     fetchStudents(course, year, division);

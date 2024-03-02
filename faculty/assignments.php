@@ -84,7 +84,7 @@
 
         <form action='' method='post' enctype="multipart/form-data">
             <h3>Add new assignment</h3>
-            <input type='text' name='id' readonly value="<?= $result1['faculty_id']; ?>" placeholder='Faculty ID'
+            <input type='text' name='id' readonly value="<?= $result1['id']; ?>" placeholder='Faculty ID'
                 class='box'>
             <input type='text' name='name' readonly value="<?= $result1['name']; ?>" placeholder='Faculty Name'
                 class='box'>
@@ -111,7 +111,7 @@
             $data = mysqli_query($conn, $select_faculty);
             // $result1 = mysqli_fetch_assoc($data);
 
-            $faculty_id1 = $result1['faculty_id'];
+            $faculty_id1 = $result1['id'];
 
             $select_assignment = "SELECT * FROM `assignments` WHERE faculty_id = '$faculty_id1'";
             $data = mysqli_query($conn, $select_assignment);

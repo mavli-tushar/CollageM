@@ -76,7 +76,7 @@
                 <div class="detail"> Gender : <?= $fetch_faculty['gender']; ?></div>
                 <div class="detail"> Course : <?= $fetch_faculty['degree']; ?></div>
                 <div class="my-flex-btn">
-                    <a href="displayFac.php.php?delete=<?= $fetch_faculty['id']; ?>&faculty_id=<?= $fetch_faculty['id'] ?>"
+                    <a href="displayFac.php?delete=<?= $fetch_faculty['id']; ?>&faculty_id=<?= $fetch_faculty['id'] ?>"
                     class="delete-btn" onclick="return confirm('delete this faculty details?');">delete</a>
                 </div>
             </div>

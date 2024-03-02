@@ -190,6 +190,8 @@ section {
   text-align: center;
   padding: 2rem;
   width: 75rem;
+  color: black;
+  box-shadow: 0px 5px 20px rgb(0,0,0);
 }
 
 .form-container form h3 {

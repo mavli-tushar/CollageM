@@ -45,7 +45,7 @@
          while($fetch_notices = mysqli_fetch_assoc($data)){ 
         ?>
             <div class="box">
-                <div class='id'> Admin ID : <?= $fetch_notices['admin_id']; ?></div>
+                <div class='id'> Admin ID : <?= $fetch_notices['id']; ?></div>
                 <div class='name'> Title : <?= $fetch_notices['name']; ?></div>
                 <div class='detail'> Description : <?= $fetch_notices['content']; ?></div>
                 <div class='date'> Issue Date : <?= $fetch_notices['issue_date']; ?></div>

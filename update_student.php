@@ -13,7 +13,7 @@
     $select_student_id = "SELECT * FROM `students` WHERE id = '$main_stud_id'";
     $student_id_data = mysqli_query($conn, $select_student_id);
     $result_student_id = mysqli_fetch_assoc($student_id_data);
-    $stud_id = $result_student_id['stud_id'];
+    $stud_id = $result_student_id['id'];
 
     $hobbies_arr = explode(",", $result_student_id['hobbies']);
 
@@ -44,7 +44,7 @@
         }
 
         if(!isset($errMsg)){
-            $update_student = "UPDATE `students` SET student_img = '$folder',fname = '$fname', lname = '$lname', gender = '$gender', DOB = '$date_of_birth', course='$course', hobbies='$hobbies_str', email = '$email', phone_no = '$phone_no', address ='$address' WHERE stud_id = '$stud_id'";
+            $update_student = "UPDATE `students` SET student_img = '$folder',fname = '$fname', lname = '$lname', gender = '$gender', DOB = '$date_of_birth', course='$course', hobbies='$hobbies_str', email = '$email', phone_no = '$phone_no', address ='$address' WHERE id = '$stud_id'";
             $data = mysqli_query($conn, $update_student);
         
             $update_user = "UPDATE `users` SET name = '$full_name', email = '$email' WHERE stud_id = '$stud_id'";
@@ -99,7 +99,7 @@
             <h3>update student details</h3>
 
             <input type="text" name="stud_id" placeholder="Stud ID (Ex: p101)" readonly
-                value="<?= $result_student_id['stud_id']; ?>" required class="box" />
+                value="<?= $result_student_id['id']; ?>" required class="box" />
             <input type="file" name="profile_pic" class="box" />
             <input type="text" name="fname" placeholder="First Name" value="<?= $result_student_id['fname']; ?>"
                 required class="box" />
