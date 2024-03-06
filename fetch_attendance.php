@@ -1,19 +1,17 @@
 <?php
 
-include "../components/connect.php"; 
+include 'components/connect.php'; // Include your database connection file
 
-if (isset($_POST['course']) && isset($_POST['year']) && isset($_POST['division'])  && isset($_POST['lecture'])) {
+if (isset($_POST['course']) && isset($_POST['year']) && isset($_POST['division'])) {
     $course = $_POST['course'];
     $year = $_POST['year'];
     $division = $_POST['division'];
-    $lecture = $_POST['lecture'];
-    
-    $query = "SELECT a.date, a.status,a.lecture, s.fname
+
+    $query = "SELECT a.date, a.status, s.fname
               FROM attendance a
               INNER JOIN students s ON a.student_id = s.id
               WHERE a.course_name = '$course'
-              AND s.year = '$year' 
-              AND a.lecture = '$lecture'
+              AND s.year = '$year'
               AND s.division = '$division'
               ORDER BY a.date DESC";
 
@@ -25,7 +23,6 @@ if (isset($_POST['course']) && isset($_POST['year']) && isset($_POST['division']
                     <th>Date</th>
                     <th>Status</th>
                     <th>Student Name</th>
-                    <th>lecture</th>
                 </tr>';
 
         while ($row = mysqli_fetch_assoc($result)) {
@@ -33,7 +30,6 @@ if (isset($_POST['course']) && isset($_POST['year']) && isset($_POST['division']
                     <td>' . $row['date'] . '</td>
                     <td>' . $row['status'] . '</td>
                     <td>' . $row['fname'] . '</td>
-                    <td>' . $row['lecture'] . '</td>
                   </tr>';
         }
 

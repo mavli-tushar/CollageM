@@ -138,9 +138,16 @@ table th {
                         <option value="Ty">Third Year</option>
                 </select>
                 <select class="col-md-4" name="division" id="division" required>
+                <option>Select divition</option>
                 <option value="Div-1" >Div-1</option>
                         <option value="Div-2">Div-2</option>
                         <option value="Div-3">Div-3</option>
+                </select>
+                <select class="col-md-4" name="lecture" id="lecture" required>
+                <option>Select lecture</option>
+                <option value="lec-1" >lecture-1</option>
+                        <option value="lec-2">lecture-2</option>
+                        <option value="lec-3">lecture-3</option>
                 </select>
             </div>
             <button type="submit">Filter</button>
