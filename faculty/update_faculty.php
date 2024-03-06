@@ -136,8 +136,8 @@
                 ?>>MSCIT</option>
             </select>
             <div class="my-flex-btn">
-                <input type="submit" value="save" name="update" class="option-btn" />
-                <a href="faculty_home.php" class="delete-btn">go back</a>
+                <input type="submit" value="save" name="update" class="option-btnf" />
+                <a href="faculty_home.php" class="delete-btnf">go back</a>
             </div>
         </form>
                     

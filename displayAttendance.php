@@ -10,6 +10,45 @@
         header('location:student_login.php');
     }
 
+// Get the current date and month
+$currentDate = date('Y-m-d');
+$currentMonth = date('m');
+
+// Calculate total number of days present up to the current date in the month
+$query = "SELECT COUNT(*) AS total_days_present
+          FROM attendance
+          WHERE student_id = '$stud_id'
+          AND MONTH(date) = '$currentMonth'
+          AND YEAR(date) = YEAR(CURRENT_DATE())
+          AND date <= '$currentDate'";
+
+$result = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($result);
+$total_days_present = $row['total_days_present'];
+
+// Calculate total number of working days up to the current date in the month
+$total_working_days = getTotalWorkingDaysInMonth(date('Y'), $currentMonth);
+
+// Calculate attendance percentage
+$attendance_percentage = ($total_days_present / $total_working_days) * 100;
+
+function getTotalWorkingDaysInMonth($year, $month) {
+    $totalDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+    $workingDays = 0;
+
+    for ($day = 1; $day <= $totalDays; $day++) {
+        $date = "$year-$month-$day";
+        $dayOfWeek = date('N', strtotime($date)); // 1 (Monday) to 7 (Sunday)
+
+        // Exclude Sundays (dayOfWeek = 7)
+        if ($dayOfWeek != 7) {
+            $workingDays++;
+        }
+    }
+
+    return $workingDays;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -19,82 +58,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Students</title>
+    <title>Student Attendance</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <link rel="stylesheet" href="css/user_style1.css" />
 
     <style>
-        
-        #filterForm .row {
-    display: flex;
-    justify-content: space-between;
-}
-
-#filterForm select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-#filterForm select:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-.container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    text-align: center;
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-label {
-    display: inline-block;
-    margin-right: 10px;
-}
-
-select {
-    padding: 5px;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    margin-right: 10px;
-}
-
-input[type="submit"] {
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    font-size: large;
 }
 
 table th,
@@ -117,7 +92,8 @@ table th {
 
     <section class="Attendance">
 
-        <h1 class="heading">Students Attendance</h1>
+        <h1 class="heading">Student Attendance</h1>
+        <p>Attendance Percentage: <?php echo $attendance_percentage; ?>%</p>
         <br><br>
         <div id="attendanceTable">
             <?php

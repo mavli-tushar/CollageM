@@ -66,8 +66,8 @@ if(isset($_POST['login'])){
             <input type="email" name="email" required placeholder="Email ID" class="box">
             <input type="password" name="password" required placeholder="Password" class="box">
             <input type="submit" value="login now" class="btn" name="login">
-            <p>Contact the admin for registration of the new student.</p>
             <a href="faculty/faculty_login.php" class="option-btn">log in as faculty</a>
+            <p>Contact the admin for registration of the new student.</p>
         </form>
 
     </section>

@@ -24,6 +24,7 @@
             <a href="assignments.php">assignment</a>
             <a href="notices.php">notices</a>
             <a href="message.php">contact</a>
+            <a href="displayAttendance.php">Attendance</a>
         </nav>
 
         <div class="icons">

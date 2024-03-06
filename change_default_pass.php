@@ -13,7 +13,7 @@ if(!isset($main_stud_id)){
     $select_stud_id = "SELECT * FROM `students` WHERE id = '$main_stud_id'";
     $stud_id_data = mysqli_query($conn, $select_stud_id);
     $result_stud_id = mysqli_fetch_assoc($stud_id_data);
-    $stud_id = $result_stud_id['stud_id'];
+    $stud_id = $result_stud_id['id'];
 
     $default_pass = 'd4284084a4bc552ebda1aac89e6724954e9eb183';
 
@@ -27,7 +27,7 @@ if(!isset($main_stud_id)){
         move_uploaded_file($tempName, $folder);
 
         $empty_pass = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
-        $select_old_pass = "SELECT password FROM `students` WHERE stud_id = '$stud_id'";
+        $select_old_pass = "SELECT password FROM `students` WHERE id = '$stud_id'";
         $data = mysqli_query($conn, $select_old_pass);
 
         $result_password = mysqli_fetch_assoc($data);
@@ -47,7 +47,7 @@ if(!isset($main_stud_id)){
             $message[] = 'this is current password! 😟';
         }else{
             if($new_pass != $empty_pass){
-                $update_student_pass = "UPDATE `students` SET email = '$email', password = '$confirm_pass', student_img = '$folder' WHERE stud_id = '$stud_id'";
+                $update_student_pass = "UPDATE `students` SET email = '$email', password = '$confirm_pass', student_img = '$folder' WHERE id = '$stud_id'";
                 $data_change_password = mysqli_query($conn, $update_student_pass);
 
                 $updated_user_password = "UPDATE `users` SET email = '$email', password = '$confirm_pass' WHERE stud_id = '$stud_id'";
@@ -102,7 +102,7 @@ if(!isset($main_stud_id)){
 
             <input type="hidden" name="prev_password" value="<?= $result['password']; ?>">
             <input type="text" name="name" placeholder="SID" disabled required class="box"
-                value="<?= $result_stud_id['stud_id']; ?>" />
+                value="<?= $result_stud_id['id']; ?>" />
             <input type="text" name="email" placeholder="Username" required class="box"
                 value="<?= $result_stud_id['email']; ?>" />
             <input type="file" name="profile_pic" class="box" />

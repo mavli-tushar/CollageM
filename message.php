@@ -61,7 +61,7 @@
             <input type='text' name='phone_no' readonly placeholder='Phone No' class='box'
                 value="<?php echo $result_student_id['phone_no']; ?>">
             <textarea name="message" rows="5" placeholder="Message" class="box my_textarea"></textarea>
-            <input type='submit' value='Send Message' class='option-btn' name='send_msg'>
+            <input type='submit' value='Send Message' class='option-btnf' name='send_msg'>
         </form>
 
     </section>

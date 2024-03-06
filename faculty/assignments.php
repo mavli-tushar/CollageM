@@ -94,7 +94,7 @@
             <input type="file" name="assignment_pdf" accept="application/pdf, application/vnd.ms-excel" class="box" />
             <h2>Last Date of Submission</h2>
             <input type="date" name="last_date" class="box" min="<?php echo date('Y-m-d');?>" required/>
-            <input type='submit' value='Add Assignment' class='option-btn' name='add_assignment' required>
+            <input type='submit' value='Add Assignment' class='option-btnf' name='add_assignment' required>
         </form>
 
     </section>

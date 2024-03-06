@@ -186,8 +186,8 @@
             <textarea name="address" rows="5" placeholder="Address"
                 class="box my_textarea"><?php echo $result_student_id['address']; ?></textarea>
             <div class="my-flex-btn">
-                <input type="submit" value="save" name="update" class="option-btn" />
-                <a href="student_home.php" class="delete-btn">go back</a>
+                <input type="submit" value="save" name="update" class="option-btnf" />
+                <a href="student_home.php" class="delete-btnf">go back</a>
             </div>
         </form>
     </section>

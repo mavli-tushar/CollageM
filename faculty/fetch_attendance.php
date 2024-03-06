@@ -39,7 +39,7 @@ if (isset($_POST['course']) && isset($_POST['year']) && isset($_POST['division']
 
         echo '</table>';
     } else {
-        echo 'No records found';
+        echo "<h1>No records found</h1>";
     }
 } else {
     echo 'Invalid request';

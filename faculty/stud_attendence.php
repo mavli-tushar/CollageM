@@ -109,8 +109,9 @@ if(isset($_POST['submit_attendance'])){
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
+    margin-right: 10px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 3px solid #ccc;
     box-sizing: border-box;
 }
 

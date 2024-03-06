@@ -13,14 +13,14 @@ if(!isset($main_stud_id)){
     $select_stud_id = "SELECT * FROM `students` WHERE id = '$main_stud_id'";
     $stud_id_data = mysqli_query($conn, $select_stud_id);
     $result_stud_id = mysqli_fetch_assoc($stud_id_data);
-    $stud_id = $result_stud_id['stud_id'];
+    $stud_id = $result_stud_id['id'];
 
 if(isset($_POST['update'])){
 
     $email = $_POST['email'];
 
     $empty_pass = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
-    $select_old_pass = "SELECT password FROM `students` WHERE stud_id = '$stud_id'";
+    $select_old_pass = "SELECT password FROM `students` WHERE id = '$stud_id'";
     $data = mysqli_query($conn, $select_old_pass);
 
     $result_password = mysqli_fetch_assoc($data);
@@ -40,7 +40,7 @@ if(isset($_POST['update'])){
         $message[] = 'this is current password! 😟';
     }else{
         if($new_pass != $empty_pass){
-            $update_admin_pass = "UPDATE `students` SET email = '$email', password = '$confirm_pass' WHERE stud_id = '$stud_id'";
+            $update_admin_pass = "UPDATE `students` SET email = '$email', password = '$confirm_pass' WHERE id = '$stud_id'";
             $data_change_password = mysqli_query($conn, $update_admin_pass);
 
             $updated_user_password = "UPDATE `users` SET email = '$email', password = '$confirm_pass' WHERE stud_id = '$stud_id'";
@@ -91,15 +91,15 @@ if(isset($_POST['update'])){
 
             <input type="hidden" name="prev_password" value="<?= $result['password']; ?>">
             <input type="text" name="name" placeholder="Admin ID" disabled required class="box"
-                value="<?= $result_stud_id['stud_id']; ?>" />
+                value="<?= $result_stud_id['id']; ?>" />
             <input type="text" name="email" placeholder="Username" required class="box"
                 value="<?= $result_stud_id['email']; ?>" />
             <input type="password" name="old_password" placeholder="Old Password" class="box" />
             <input type="password" name="new_password" placeholder="New Password" class="box" />
             <input type="password" name="new_cpassword" placeholder="Confirm New Password" class="box" />
             <dov class="my-flex-btn">
-                <input type="submit" value="update now" name="update" class="btn" />
-                <a href="student_home.php" class="delete-btn">go back</a>
+                <input type="submit" value="update now" name="update" class="btnf" />
+                <a href="student_home.php" class="delete-btnf">go back</a>
             </dov>
         </form>
     </section>

@@ -36,7 +36,7 @@
     padding: 8px;
     margin-bottom: 10px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 3px solid #ccc;
     box-sizing: border-box;
 }
 
@@ -95,6 +95,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    font-size: large;
 }
 
 table th,
