@@ -13,7 +13,7 @@ if(!isset($main_admin_id)){
     $select_admin_id = "SELECT * FROM `admins` WHERE id = '$main_admin_id'";
     $admin_id_data = mysqli_query($conn, $select_admin_id);
     $result_admin_id = mysqli_fetch_assoc($admin_id_data);
-    $admin_id = $result_admin_id['admin_id'];
+    $admin_id = $result_admin_id['id'];
 
 if(isset($_POST['update'])){
 
@@ -21,7 +21,7 @@ if(isset($_POST['update'])){
     $email = $_POST['email'];
 
     $empty_pass = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
-    $select_old_pass = "SELECT password FROM `admins` WHERE admin_id = '$admin_id'";
+    $select_old_pass = "SELECT password FROM `admins` WHERE id = '$admin_id'";
     $data = mysqli_query($conn, $select_old_pass);
 
     $result_password = mysqli_fetch_assoc($data);
@@ -92,7 +92,7 @@ if(isset($_POST['update'])){
 
             <input type="hidden" name="prev_password" value="<?= $result['password']; ?>">
             <input type="text" name="name" placeholder="Admin ID" disabled required class="box"
-                value="<?= $result_admin_id['admin_id']; ?>" />
+                value="<?= $result_admin_id['id']; ?>" />
             <input type="text" name="name" placeholder="Username" required class="box"
                 value="<?= $result_admin_id['name']; ?>" />
             <input type="text" name="email" placeholder="Username" required class="box"

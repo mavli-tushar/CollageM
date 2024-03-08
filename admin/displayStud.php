@@ -28,6 +28,10 @@
         $delete_user = "DELETE FROM `users` WHERE stud_id='$delete_user'";
         $data = mysqli_query($conn, $delete_user);
 
+        $delete_attandence = "DELETE FROM `attendance` WHERE student_id='$delete_id'";
+        $data = mysqli_query($conn, $delete_attandence);
+
+
         header('location:displayStud.php');
     }
 

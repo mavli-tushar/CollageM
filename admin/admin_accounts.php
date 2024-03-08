@@ -32,89 +32,165 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Accounts</title>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <link rel="stylesheet" href="../css/admin_style.css" />
+    <title>Admin Accounts</title>
+
+    <style>
+        /* Custom CSS for table */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            font-size: medium;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .btns {
+            float: right;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            width: 20%;
+            font-size: medium;
+        }
+
+        .btns:hover {
+            background-color: #0056b3;
+        }
+
+        .btns-danger {
+            background-color: #dc3545;
+        }
+    </style>
 </head>
 
 <body>
 
-    <?php include '../components/admin_header.php'; ?>
+<?php include '../components/admin_header.php'; ?>
 
-    <?php
-    if(isset($message)){
-        foreach($message as $message){
-            echo '
-            <div class="message">
-                <span>'.$message.'</span>
-                <a onclick="this.parentElement.remove();"><img src="../images/cancel.png" alt=""></a>
-            </div>
-            ';
-        }
+<?php
+if(isset($message)){
+    foreach($message as $message){
+        echo '
+        <div class="message">
+            <span>'.$message.'</span>
+            <a onclick="this.parentElement.remove();"><img src="../images/cancel.png" alt=""></a>
+        </div>
+        ';
     }
-    ?>
-
+}
+?>
+<a href="register_admin.php" class="btns">Register New Admin</a>
     <section class="show-notices">
-
+    
         <h1 class="heading">Admin Staff</h1>
 
-        <div class="box-container">
+        <div class="containe">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Admin ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $select_admin = "SELECT * FROM `admins`";
+                    $data = mysqli_query($conn, $select_admin);
 
-            <div class="box">
-                <h1>add new admin</h1>
-                <a href="register_admin.php" class="btn">register admin</a>
-            </div>
+                    $total = mysqli_num_rows($data);
 
-            <?php
-        $select_admin = "SELECT * FROM `admins`";
-        $data = mysqli_query($conn, $select_admin);
-
-        $total = mysqli_num_rows($data);
-
-        if($total > 0){
-         while($fetch_admin = mysqli_fetch_assoc($data)){ 
-        ?>
-            <div class="box">
-                <div class="id"> Admin ID : <?= $fetch_admin['id']; ?></div>
-                <div class="name"> Name : <?= $fetch_admin['name']; ?></div>
-                <div class="detail"> Email : <?= $fetch_admin['email']; ?></div>
-                <?php
-                    if($fetch_admin['id'] == $admin_id && $fetch_admin['name'] == "admin"){
-                            echo '<a href="update_profile.php" class="option-btn">update</a>';
-                    }
-                    else if($fetch_admin['id'] == $admin_id){
-                        echo '<div class="my-flex-btn">
-                                <a href="update_profile.php" class="option-btn">update</a>';
-                                
-                    
-                ?>
-                <a href="admin_accounts.php?delete=<?= $fetch_admin['id']; ?>&admin_id=<?= $fetch_admin['id'] ?>"
-                    class="
-                    delete-btn" onclick="return confirm('delete this admin?');">delete</a>
-            </div>
-            <?php
+                    if ($total > 0) {
+                        while ($fetch_admin = mysqli_fetch_assoc($data)) {
+                    ?>
+                            <tr>
+                                <td><?= $fetch_admin['id']; ?></td>
+                                <td><?= $fetch_admin['name']; ?></td>
+                                <td><?= $fetch_admin['email']; ?></td>
+                                <td>
+                                    <?php
+                                        echo '<a href="update_profile.php" class="btn">Update</a>';
+                                        echo '<a href="admin_accounts.php?delete=' . $fetch_admin['id'] . '&admin_id=' . $fetch_admin['id'] . '" class="btn btn-danger" onclick="return confirm(\'Delete this admin?\');">Delete</a>';
+                                    
+                                    ?>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                    } else {
+                        echo "<tr><td colspan='4'>No records found</td></tr>";
                     }
                     ?>
-
-
-        </div>
-
-        <?php
-         }
-      }else{
-         echo "<div class='box'>
-                    <a href='register_admin.php' class='btn'>add new admin</a>
-                </div>";
-      }
-   ?>
-
+                </tbody>
+            </table>
         </div>
 
     </section>
 
 </body>
-
-<script src="../js/admin_logic1.js"></script>
 
 </html>
