@@ -216,8 +216,9 @@ section {
 
 .form-container form p {
   font-size: 1.8rem;
-  color: var(--red);
+  color: black;
   margin: 1.15rem;
+  float: left;
 }
 
 .form-container form p span {

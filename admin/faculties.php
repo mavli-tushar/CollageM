@@ -84,13 +84,15 @@
     <button class="custom-btn"><a href="displayFac.php" class="btn-link">View Facultys</a></button>
     <section class="form-container">
         
-        <form action="" method="post">
+        <form action="" method="post"  onsubmit="return validatePhoneNumber();">
             <h3>add new faculty</h3>
             <input type="text" name="name" placeholder="Faculty Name" required class="box" />
             <input type="email" name="email" placeholder="Email ID" required class="box" />
             <input type="password" name="password" readonly value="faculty123" placeholder="Password" required
                 class="box" />
-            <input type="text" name="phone_no" placeholder="Contact Number" required class="box" />
+            <input type="text" id="phone_no" name="phone_no" placeholder="Contact Number" required class="box" />
+            <span id="phone_error" style="color: red; display: none;">Contact number must be 10 digits</span>
+
             <div class="box">
                 <input type="radio" name="gender" value="Male" required> Male
                 <input type="radio" name="gender" value="Female" required style="margin-left: 5rem;"> Female
@@ -108,5 +110,24 @@
 </body>
 
 <script src="../js/admin_logic1.js"></script>
+
+
+<script>
+    const phoneInput = document.getElementById('phone_no');
+    const phoneError = document.getElementById('phone_error');
+
+    function validatePhoneNumber() {
+        if (phoneInput.value.length !== 10) {
+            phoneError.style.display = 'block';
+            return false;
+        } else {
+            phoneError.style.display = 'none';
+            return true;
+        }
+    }
+
+    phoneInput.addEventListener('input', validatePhoneNumber);
+</script>
+
 
 </html>

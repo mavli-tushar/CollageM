@@ -91,6 +91,7 @@ section {
   font-size: 1.6rem;
   text-transform: capitalize;
   text-align: center;
+  display:inline-block;
 }
 
 .btnf {
@@ -206,6 +207,8 @@ section {
   color: var(--light-color);
   margin-bottom: 1rem;
   border-radius: 0.5rem;
+  float: left;
+  margin-top: 1rem;
 }
 
 .form-container form p span {
@@ -233,7 +236,7 @@ section {
   z-index: 10000;
 }
 .header p{
-  display: flex;
+  display: center;
   align-items:flex-end;
 }
 

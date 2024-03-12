@@ -76,6 +76,17 @@
                 <option value="faculty">Faculty</option>
                 <option value="student">Student</option>
             </select>
+            <select name="faculty_id" class="box">
+                <option value="">Select Faculty</option>
+                    <?php
+                    // Fetch and display faculty list
+                    $select_faculty = "SELECT * FROM `faculty`";
+                    $faculty_data = mysqli_query($conn, $select_faculty);
+                    while ($faculty = mysqli_fetch_assoc($faculty_data)) {
+                        echo "<option value='" . $faculty['id'] . "'>" . $faculty['name'] . "</option>";
+                    }
+                    ?>
+            </select>
             <textarea name='content' rows='5' placeholder='Notice Content' class='box my_textarea'></textarea>
             <input type='submit' value='Add Notice' class='option-btnf' name='add_notice'>
         </form>

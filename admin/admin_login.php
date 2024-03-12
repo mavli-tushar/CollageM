@@ -54,14 +54,19 @@
         }
     }
     ?>
-
     <section class="form-container">
 
         <form action="" method="post">
             <h3>login now</h3>
-            <p>default username = <span>admin</span> & password = <span>admin123</span></p>
+            <div class="a">
+            <img src="../images/svp.png" height="50spx" alt="Logo">
+            </div>
+            <!-- <p>default username = <span>admin</span> & password = <span>admin123</span></p> -->
+            <p>Enter Your Name </p>
             <input type="text" name="name" required placeholder="enter your username" class="box">
-            <input type="password" name="pass" required placeholder="enter your password" class="box">
+            <p>Enter Your Password </p>
+            <input type="password" name="pass" required placeholder="enter your password here" class="box">
+            <a href="../faculty/faculty_login.php" class="option-btnf">log in as faculty</a>
             <input type="submit" value="login now" class="btnf" name="login">
         </form>
 

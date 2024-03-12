@@ -61,6 +61,9 @@
   text-transform: capitalize;
   text-align: center;
 }
+.sh:hover{
+    color: aliceblue;
+}
 .b{
 background-color: var(--orange);
   margin-top: 1rem;
@@ -84,7 +87,7 @@ background-color: var(--orange);
         <h1 class="heading">student</h1>
             <form class="heading" action="" method="post">
                 <input  class="b"type="text" name="search" placeholder="Search Data Here">
-                <input class="sh" name="submit" type="submit"  value="Search">
+                <button name="submit" type="submit" class="sh" ><i class="fa fa-search"></i></button>
             </form>
         <div class="box-container">
         <?php
@@ -120,7 +123,7 @@ background-color: var(--orange);
             <?php
          }
       }else{
-         echo '<p class="empty">no students added yet!</p>';
+         echo '<p class="empty">no student found!</p>';
       }
     }
    ?>

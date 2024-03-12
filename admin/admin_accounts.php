@@ -84,9 +84,7 @@
             background-color: #f9f9f9;
         }
 
-        tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+       
 
         .btn {
             padding: 8px 12px;
@@ -114,6 +112,8 @@
             text-decoration: none;
             width: 20%;
             font-size: medium;
+            text-align: center;
+
         }
 
         .btns:hover {

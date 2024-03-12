@@ -90,7 +90,7 @@
     <button class="custom-btn"><a href="displayStud.php" class="btn-link">View Students</a></button>
     <section class="form-container">
     
-        <form action="" method="post" autocomplete="on" enctype="multipart/form-data">
+        <form action="" method="post" autocomplete="on" enctype="multipart/form-data" onsubmit="return validatePhoneNumber();">
             <h3>Add New Student</h3>
             <input type="text" name="fname" placeholder="First Name" class="box" />
             <input type="text" name="lname" placeholder="Last Name" class="box" />
@@ -125,7 +125,8 @@
                 </div>
             </div>
             <input type="text" name="email" placeholder="Email ID" class="box" />
-            <input type="text" name="phone_no" placeholder="Contact Number" class="box" />
+            <input type="text" id="phone_no" name="phone_no" placeholder="Contact Number" class="box" />
+            <span id="phone_error" style="color: red; display: none;">Contact number must be 10 digits</span>
             <select name="fees" class="box">
                 <option value="Not Selected">Fees Status</option>
                 <option value="Remaining">Remaining</option>
@@ -139,5 +140,22 @@
 </body>
 
 <script src="../js/admin_logic1.js"></script>
+
+<script>
+    const phoneInput = document.getElementById('phone_no');
+    const phoneError = document.getElementById('phone_error');
+
+    function validatePhoneNumber() {
+        if (phoneInput.value.length !== 10) {
+            phoneError.style.display = 'block';
+            return false;
+        } else {
+            phoneError.style.display = 'none';
+            return true;
+        }
+    }
+
+    phoneInput.addEventListener('input', validatePhoneNumber);
+</script>
 
 </html>
