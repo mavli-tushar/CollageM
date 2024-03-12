@@ -18,8 +18,9 @@
 
         $main_admin_id = $result['id'];
 
-        $for_whom = $_POST['for_whom'];
+       
         $name = $_POST['name'];
+        $fname = $_POST['fname'];
         $content = $_POST['content'];
         date_default_timezone_set('Asia/Kolkata');
         $date = date('y-m-d h:i:s');
@@ -27,7 +28,7 @@
         if($name == "" || $content == ""){
             $message[]="please, Fill all fields details!";
         }else{
-                $query = "INSERT INTO notice(admin_id, name, for_whom, content, issue_date) VALUES ('$main_admin_id', '$name', '$for_whom', '$content', '$date')";
+                $query = "INSERT INTO notice(admin_id, name, content, issue_date,fname) VALUES ('$main_admin_id', '$name', '$content', '$date','$fname')";
                 $data = mysqli_query($conn, $query);
 
                 if($data){
@@ -95,14 +96,22 @@
     <section class="form-container">
 
         <form action='' method='post'>
-            <h3>Add new notice</h3>    <button id="customBtn" class="custom-btn"><a href="singleFacultyNotice.php" class="btn-link"> to single faculty</a></button>
+            <h3>Send Notice To Faculty</h3>    <button id="customBtn" class="custom-btn"><a href="singleFacultyNotice.php" class="btn-link"> to single faculty</a></button>
 
             <input type='text' name='name' placeholder='Notice Name' class='box'>
-            <select name="for_whom" id="forWhom"class="box">
+            <select name="for_whom" id="" class="box">
+            <option value="faculty" Selected>Faculty</option>
+            </select>
+            <select name="fname" id="forWhom"class="box">
                 <option value="Not Selected">Who will get this notice ?</option>
-                <option value="all">All</option>
-                <option value="faculty">Faculty</option>
-                <option value="student">Student</option>
+                <?php
+                    $query="select *from faculty";
+                    $run=mysqli_query($conn,$query);
+				    while($row=mysqli_fetch_array($run)) {
+				        echo	"<option value=".$row['name'].">".$row['name']."</option>";
+				    }
+				?>
+                ?>
             </select>
            
             <textarea name='content' rows='5' placeholder='Notice Content' class='box my_textarea'></textarea>
@@ -128,7 +137,7 @@
         <div class="box-container">
 
             <?php
-        $select_notice = "SELECT * FROM `notice`";
+        $select_notice = "SELECT * FROM `notice` ";
         $data = mysqli_query($conn, $select_notice);
 
         $total = mysqli_num_rows($data);

@@ -18,6 +18,7 @@ if(isset($_POST['login'])){
     
     if($total > 0){
         $_SESSION['faculty_id'] = $result['id'];
+        $_SESSION['name'] = $result['name'];
         header('location:change_default_pass_faculty.php');
     }else{
         $message[] = 'incorrect username or password!';

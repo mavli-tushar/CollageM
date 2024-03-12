@@ -154,7 +154,8 @@ if(isset($message)){
                         <th>Admin ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Actions</th>
+                        <th>Contact</th>
+                        <!--  <th>Actions</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -171,13 +172,14 @@ if(isset($message)){
                                 <td><?= $fetch_admin['id']; ?></td>
                                 <td><?= $fetch_admin['name']; ?></td>
                                 <td><?= $fetch_admin['email']; ?></td>
-                                <td>
+                                <td><?= $fetch_admin['phone_no']; ?></td>
+                                <!-- <td>
                                     <?php
                                         echo '<a href="update_profile.php" class="btn">Update</a>';
                                         echo '<a href="admin_accounts.php?delete=' . $fetch_admin['id'] . '&admin_id=' . $fetch_admin['id'] . '" class="btn btn-danger" onclick="return confirm(\'Delete this admin?\');">Delete</a>';
                                     
                                     ?>
-                                </td>
+                                </td> -->
                             </tr>
                         <?php
                         }
@@ -192,5 +194,5 @@ if(isset($message)){
     </section>
 
 </body>
-
+<script src="../js/admin_logic1.js"></script>
 </html>

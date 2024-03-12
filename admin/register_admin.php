@@ -11,6 +11,7 @@ if(!isset($main_admin_id)){
 }
 
 if (isset($_POST['register'])) {
+    $phone_no=$_POST['phone_no'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $pass = sha1($_POST['password']);
@@ -19,7 +20,7 @@ if (isset($_POST['register'])) {
         if($pass != $cpass){
            
         }else{
-            $insert_admin = "INSERT INTO `admins`(name, email, password) VALUES('$name', '$email', '$pass')";
+            $insert_admin = "INSERT INTO `admins`(name, email, password,phone_no) VALUES('$name', '$email', '$pass',$phone_no)";
             $data = mysqli_query($conn, $insert_admin);
             $admin_id=mysqli_insert_id($conn);
             $insert_user = "INSERT INTO `users`(admin_id, name, email, password) VALUES('$admin_id', '$name', '$email', '$pass')";
@@ -52,6 +53,7 @@ if (isset($_POST['register'])) {
             <h3>register as admin</h3>
             <input type="text" name="name" placeholder="Username" required class="box" />
             <input type="text" name="email" placeholder="Email ID" required class="box" />
+            <input type="text" name="phone_no" placeholder="Phone Number" required class="box" />
             <input type="password" name="password" maxlength="20" placeholder="Password" required class="box" />
             <input type="password" name="cpassword"  placeholder="Confirm Password" required class="box" />
             <div class="my-flex-btn">

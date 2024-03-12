@@ -15,7 +15,7 @@
     $select_faculty_id = "SELECT * FROM `faculty` WHERE id = '$faculty_id'";
     $faculty_id_data = mysqli_query($conn, $select_faculty_id);
     $result_faculty_id = mysqli_fetch_assoc($faculty_id_data);
-    $faculty_id = $result_faculty_id['faculty_id'];
+    $faculty_id = $result_faculty_id['id'];
 
     $default_pass = '46ae7dd65fd3268b0dc974dff7fcc0e85a8b9cc3';
 
@@ -29,7 +29,7 @@
             move_uploaded_file($tempName, $folder);
 
             $empty_pass = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
-            $select_old_pass = "SELECT password FROM `faculty` WHERE faculty_id = '$faculty_id'";
+            $select_old_pass = "SELECT password FROM `faculty` WHERE id = '$faculty_id'";
             $data = mysqli_query($conn, $select_old_pass);
 
             $result_password = mysqli_fetch_assoc($data);
@@ -49,10 +49,10 @@
                 $message[] = 'this is current password! 😟';
             }else{
                 if($new_pass != $empty_pass){
-                    $update_faculty_pass = "UPDATE `faculty` SET email = '$email', password = '$confirm_pass', faculty_img = '$folder' WHERE faculty_id = '$faculty_id'";
+                    $update_faculty_pass = "UPDATE `faculty` SET email = '$email', password = '$confirm_pass', faculty_img = '$folder' WHERE id = '$faculty_id'";
                     $data_change_password = mysqli_query($conn, $update_faculty_pass);
 
-                    $updated_user_password = "UPDATE `users` SET email = '$email', password = '$confirm_pass' WHERE faculty_id = '$faculty_id'";
+                    $updated_user_password = "UPDATE `users` SET email = '$email', password = '$confirm_pass' WHERE id = '$faculty_id'";
                     $data_user = mysqli_query($conn, $updated_user_password);
 
                     $message[] = 'profile updated successfully! 😊';
@@ -104,7 +104,7 @@
             <h3>update password</h3>
 
             <input type="text" name="name" placeholder="SID" disabled required class="box"
-                value="<?= $result_faculty_id['faculty_id']; ?>" />
+                value="<?= $result_faculty_id['id']; ?>" />
             <input type="text" name="email" placeholder="Username" required class="box"
                 value="<?= $result_faculty_id['email']; ?>" />
             <input type="file" name="profile_pic" class="box" />

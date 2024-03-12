@@ -5,6 +5,7 @@
     session_start();
 
     $faculty_id = $_SESSION['faculty_id'];
+    $name=$_SESSION['name'];
 
     if(!isset($faculty_id)){
         header('location:faculty_login.php');
@@ -38,7 +39,7 @@
         <div class="box-container">
 
             <?php
-        $select_notice = "SELECT * FROM `notice` WHERE for_whom = 'faculty' OR for_whom = 'all'";
+        $select_notice = "SELECT * FROM `notice` WHERE for_whom = 'faculty' OR for_whom = 'all' or fname='$name'";
         $data = mysqli_query($conn, $select_notice);
 
         $total = mysqli_num_rows($data);
