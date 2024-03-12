@@ -63,7 +63,7 @@
                 ?>
                 <h3><?= $total_students ?></h3>
                 <p>total students</p>
-                <a href="students.php" class="btn">see students</a>
+                <a href="displayStud.php" class="btn">see students</a>
             </div>
 
             <div class="box">
@@ -75,7 +75,7 @@
                 ?>
                 <h3><?= $total_faculties ?></h3>
                 <p>total faculties</p>
-                <a href="faculties.php" class="btn">see faculties</a>
+                <a href="displayFac.php" class="btn">see faculties</a>
             </div>
 
             <div class="box">
@@ -87,7 +87,7 @@
                 ?>
                 <h3><?= $total_peons ?></h3>
                 <p>total peons</p>
-                <a href="peons.php" class="btn">see peons</a>
+                <a href="displayPeon.php" class="btn">see peons</a>
             </div>
 
             <div class="box">

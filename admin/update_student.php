@@ -19,26 +19,47 @@
     
     if (isset($_POST['update'])) {
         
+        $fileName = $_FILES['profile_pic']['name'];
+        $tempName = $_FILES['profile_pic']['tmp_name'];   
+
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
+        $gender = $_POST['gender'];
+        $date_of_birth = $_POST['date_of_birth'];
+        $course = $_POST['course'];
+        $hobbies_str = implode(",",$_POST['hobby']);
         $email = $_POST['email'];
-        $fees = $_POST['fees'];
+        $phone_no = $_POST['phone_no'];
+        $address = $_POST['address'];
+        $feeStatus = $_POST['fees'];
 
         $full_name = $fname." ".$lname;
 
-        $update_student = "UPDATE `students` SET fees = '$fees' WHERE id = '$stud_id'";
-        $data = mysqli_query($conn, $update_student);
-    
-        $update_user = "UPDATE `users` SET name = '$full_name', email = '$email' WHERE id = '$stud_id'";
-        $data = mysqli_query($conn, $update_user);
+            if($fileName){
+                $folder = 'uploaded_images/students/'.$fileName;
+                move_uploaded_file($tempName, $folder);
+                unlink($result['student_img']); 
+                $errMSG = "New Profile Picture Update!!!";
+            }else{
+                $folder = $result['student_img'];
+            }
 
-        if($data){
-            $message[] = 'update data successfully!';
-            header('location:students.php');
-        }else{
-            $message[] = 'failed to update data!';
-        }
+            if(!isset($errMsg)){
+                    $update_student = "UPDATE `students` SET student_img = '$folder',fname = '$fname', lname = '$lname', gender = '$gender', DOB = '$date_of_birth', course='$course', hobbies='$hobbies_str', email = '$email', phone_no = '$phone_no', address ='$address' ,fees='$feeStatus' WHERE id = '$stud_id'";
+                    $data = mysqli_query($conn, $update_student);
+                
+                    $update_user = "UPDATE `users` SET name = '$full_name', email = '$email' WHERE stud_id = '$stud_id'";
+                    $data = mysqli_query($conn, $update_user);
+
+                if($data){
+                    $message[] = 'update data successfully!';
+                    header('location:displayStud.php');
+                }else{
+                    $message[] = 'failed to update data!';
+                }
+            }
     }
+
 
 ?>
 
@@ -74,33 +95,106 @@
     ?>
 
     <section class="form-container">
-        <form action="" method="post">
-            <h3>update student's fees details</h3>
+        <form action="" method="post" onsubmit="return validatePhoneNumber();">
+            <h3>update student's  details</h3>
 
-            <input type="text" name="stud_id" readonly placeholder="Stud ID" readonly
+            <input type="text" name="stud_id" placeholder="Stud ID (Ex: p101)" readonly
                 value="<?= $result['id']; ?>" required class="box" />
-            <input type="text" name="fname" readonly placeholder="First Name" value="<?= $result['fname']; ?>" required
+            <input type="file" name="profile_pic" class="box" />
+            <input type="text" name="fname" placeholder="First Name" value="<?= $result['fname']; ?>"
+                required class="box" />
+            <input type="text" name="lname" placeholder="Last Name" value="<?= $result['lname']; ?>" required
                 class="box" />
-            <input type="text" name="lname" readonly placeholder="Last Name" value="<?= $result['lname']; ?>" required
-                class="box" />
-            <input type="text" name="email" readonly placeholder="Email ID" value="<?= $result['email']; ?>" required
-                class="box" />
-            <select name="fees" class="box">
-                <option value="Not Selected">Select Fees Status</option>
-                <option value="Remaining" <?php
-                    if($result['fees'] == 'Remaining'){
+            <div class="box">
+                <input type="radio" name="gender" value="male" required <?php
+                    if($result['gender'] == 'male'){
+                        echo "checked";
+                    }
+                ?>> Male
+                <input type="radio" name="gender" value="female" required style="margin-left: 5rem;" <?php
+                    if($result['gender'] == 'female'){
+                        echo "checked";
+                    }
+                ?>> Female
+            </div>
+            <input type="date" name="date_of_birth" value="<?php echo $result['DOB']; ?>" class="box" />
+            <select name="course" class="box">
+                <option value="Not Selected">Select your course</option>
+                <option value="BCA" <?php
+                    if($result['course'] == 'BCA'){
                         echo "selected";
                     }
-                ?>>Remaining</option>
-                <option value="Paid" <?php
-                    if($result['fees'] == 'Paid'){
+                ?>>BCA</option>
+                <option value="BBA" <?php
+                    if($result['course'] == 'BBA'){
                         echo "selected";
                     }
-                ?>>Paid</option>
+                ?>>BBA</option>
+                <option value="B.COM" <?php
+                    if($result['course'] == 'B.COM'){
+                        echo "selected";
+                    }
+                ?>>B.COM</option>
+                <option value="B.TECH" <?php
+                    if($result['course'] == 'B.TECH'){
+                        echo "selected";
+                    }
+                ?>>B.TECH</option>
+                <option value="B.sc" <?php
+                    if($result['course'] == 'B.sc'){
+                        echo "selected";
+                    }
+                ?>>B.sc</option>
+                <option value="MSCIT" <?php
+                    if($result['course'] == 'MSCIT'){
+                        echo "selected";
+                    }
+                ?>>MSCIT</option>
             </select>
+            <div class="box">
+                <div class="my-flex">
+                    <input type="checkbox" name="hobby[]" value="reading" style="margin-left: 1.8rem;" <?php
+                    if(in_array('reading', $hobbies_arr)){
+                        echo "checked";
+                    }
+                ?>> Reading
+                    <input type="checkbox" name="hobby[]" value="swimming" style="margin-left: 6.5rem;" <?php
+                    if(in_array('swimming', $hobbies_arr)){
+                        echo "checked";
+                    }
+                ?>> Swimming
+                </div>
+                <br />
+                <div class="my-flex">
+                    <input type="checkbox" name="hobby[]" value="travelling" <?php
+                    if(in_array('travelling', $hobbies_arr)){
+                        echo "checked";
+                    }
+                ?>> Travelling
+                    <input type="checkbox" name="hobby[]" value="cooking" style="margin-left: 5.5rem;" <?php
+                    if(in_array('cooking', $hobbies_arr)){
+                        echo "checked";
+                    }
+                ?>> Cooking
+                </div>
+            </div>
+            <input type="text" name="email" placeholder="Email ID" value="<?= $result['email']; ?>" required
+                class="box" />
+            <input type="text" id="phone_no" name="phone_no" placeholder="Phone Number" value="<?= $result['phone_no']; ?>"
+                required class="box" />
+                <span id="phone_error" style="color: red; display: none;">Contact number must be 10 digits</span>
+
+            <select name="fees" class="box">
+                <option value="Not Selected">Fees Status</option>
+                <option value="Remaining">Remaining</option>
+                <option value="Paid">Paid</option>
+            </select>
+            
+            <textarea name="address" rows="5" placeholder="Address"
+                class="box my_textarea"><?php echo $result['address']; ?></textarea>
             <div class="my-flex-btn">
                 <input type="submit" value="save" name="update" class="option-btnf" />
-                <a href="students.php" class="delete-btnf" >go back</a>
+                <a href="displayStud.php" class="delete-btnf">go back</a>
             </div>
         </form>
     </section>
@@ -108,5 +202,22 @@
 </body>
 
 <script src="../js/admin_logic1.js"></script>
+
+<script>
+    const phoneInput = document.getElementById('phone_no');
+    const phoneError = document.getElementById('phone_error');
+
+    function validatePhoneNumber() {
+        if (phoneInput.value.length !== 10) {
+            phoneError.style.display = 'block';
+            return false;
+        } else {
+            phoneError.style.display = 'none';
+            return true;
+        }
+    }
+
+    phoneInput.addEventListener('input', validatePhoneNumber);
+</script>
 
 </html>

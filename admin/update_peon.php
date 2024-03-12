@@ -31,7 +31,7 @@
 
         if($data){
             $message[] = 'update data successfully!';
-            header('location:peons.php');
+            header('location:displayPeon.php');
         }else{
             $message[] = 'failed to update data!';
         }
@@ -70,7 +70,7 @@
     ?>
 
     <section class="form-container">
-        <form action="" method="post">
+        <form action="" method="post" onsubmit="return validatePhoneNumber();">
             <h3>update peon details</h3>
 
             <input type="text" name="peon_id" placeholder="Peon ID (Ex: p101)" readonly
@@ -79,16 +79,17 @@
                 class="box" />
             <input type="text" name="email" placeholder="Email ID" value="<?= $result['email']; ?>" required
                 class="box" />
-            <input type="text" name="phone_no" placeholder="Phone Number" value="<?= $result['phone_no']; ?>" required
+            <input type="text" id="phone_no" name="phone_no" placeholder="Phone Number" value="<?= $result['phone_no']; ?>" required
                 class="box" />
-            
+                <span id="phone_error" style="color: red; display: none;">Contact number must be 10 digits</span>
+
                 <div class="box">
     <input type="radio" name="gender" value="Male" <?= $result['gender'] === 'Male' ? 'checked' : '' ?> required> Male
     <input type="radio" name="gender" value="Female" <?= $result['gender'] === 'Female' ? 'checked' : '' ?> required style="margin-left: 5rem;"> Female
 </div>
             <div class="my-flex-btn">
                 <input type="submit" value="save" name="update" class="option-btnf" />
-                <a href="peons.php" class="delete-btn">go back</a>
+                <a href="displayPeon.php" class="delete-btn">go back</a>
             </div>
         </form>
     </section>
@@ -97,4 +98,20 @@
 
 <script src="../js/admin_logic1.js"></script>
 
+<script>
+    const phoneInput = document.getElementById('phone_no');
+    const phoneError = document.getElementById('phone_error');
+
+    function validatePhoneNumber() {
+        if (phoneInput.value.length !== 10) {
+            phoneError.style.display = 'block';
+            return false;
+        } else {
+            phoneError.style.display = 'none';
+            return true;
+        }
+    }
+
+    phoneInput.addEventListener('input', validatePhoneNumber);
+</script>
 </html>

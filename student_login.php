@@ -62,12 +62,14 @@ if(isset($_POST['login'])){
 
         <form action="" method="post">
             <h3>login now</h3>
-            <p>Default Password : <span>stud123</span></p>
+            <h2>Default Password : <span>stud123</span></h2>
+            <p>Enter your email</p>
             <input type="email" name="email" required placeholder="Email ID" class="box">
+            <p>enter your password</p>
             <input type="password" name="password" required placeholder="Password" class="box">
-            <input type="submit" value="login now" class="btn" name="login">
-            <a href="faculty/faculty_login.php" class="option-btn">log in as faculty</a>
-            <p>Contact the admin for registration of the new student.</p>
+            <input type="submit" value="login now" class="btnf" name="login">
+            <!-- <a href="faculty/faculty_login.php" class="option-btnf">log in as faculty</a> -->
+            <!-- <p>Contact the admin for registration of the new student.</p> -->
         </form>
 
     </section>

@@ -12,8 +12,8 @@
 
     $select_student_id = "SELECT * FROM `students` WHERE id = '$stud_id'";
     $student_id_data = mysqli_query($conn, $select_student_id);
-    $result_student_id = mysqli_fetch_assoc($student_id_data);
-    $student_id = $result_student_id['id'];
+    $result = mysqli_fetch_assoc($student_id_data);
+    $student_id = $result['id'];
 
     if(isset($_POST['send_msg'])){
             $name = $_POST['name'];
@@ -55,11 +55,11 @@
         <form action='' method='post'>
             <h3>Send message to Admin</h3>
             <input type='text' name='name' required readonly placeholder='Name' class='box'
-                value="<?php echo $result_student_id['fname']." ".$result_student_id['lname']; ?>">
+                value="<?php echo $result['fname']." ".$result['lname']; ?>">
             <input type='text' name='email' required readonly placeholder='Email ID' class='box'
-                value="<?php echo $result_student_id['email']; ?>">
+                value="<?php echo $result['email']; ?>">
             <input type='text' name='phone_no' readonly placeholder='Phone No' class='box'
-                value="<?php echo $result_student_id['phone_no']; ?>">
+                value="<?php echo $result['phone_no']; ?>">
             <textarea name="message" rows="5" placeholder="Message" class="box my_textarea"></textarea>
             <input type='submit' value='Send Message' class='option-btnf' name='send_msg'>
         </form>

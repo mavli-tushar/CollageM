@@ -12,10 +12,10 @@
 
     $select_student_id = "SELECT * FROM `students` WHERE id = '$main_stud_id'";
     $student_id_data = mysqli_query($conn, $select_student_id);
-    $result_student_id = mysqli_fetch_assoc($student_id_data);
-    $stud_id = $result_student_id['id'];
+    $result = mysqli_fetch_assoc($student_id_data);
+    $stud_id = $result['id'];
 
-    $hobbies_arr = explode(",", $result_student_id['hobbies']);
+    $hobbies_arr = explode(",", $result['hobbies']);
 
     if (isset($_POST['update'])) {
   
@@ -37,10 +37,10 @@
         if($fileName){
             $folder = 'uploaded_images/students/'.$fileName;
             move_uploaded_file($tempName, $folder);
-            unlink($result_student_id['student_img']); 
+            unlink($result['student_img']); 
             $errMSG = "New Profile Picture Update!!!";
         }else{
-            $folder = $result_student_id['student_img'];
+            $folder = $result['student_img'];
         }
 
         if(!isset($errMsg)){
@@ -99,54 +99,54 @@
             <h3>update student details</h3>
 
             <input type="text" name="stud_id" placeholder="Stud ID (Ex: p101)" readonly
-                value="<?= $result_student_id['id']; ?>" required class="box" />
+                value="<?= $result['id']; ?>" required class="box" />
             <input type="file" name="profile_pic" class="box" />
-            <input type="text" name="fname" placeholder="First Name" value="<?= $result_student_id['fname']; ?>"
+            <input type="text" name="fname" placeholder="First Name" value="<?= $result['fname']; ?>"
                 required class="box" />
-            <input type="text" name="lname" placeholder="Last Name" value="<?= $result_student_id['lname']; ?>" required
+            <input type="text" name="lname" placeholder="Last Name" value="<?= $result['lname']; ?>" required
                 class="box" />
             <div class="box">
                 <input type="radio" name="gender" value="male" required <?php
-                    if($result_student_id['gender'] == 'male'){
+                    if($result['gender'] == 'male'){
                         echo "checked";
                     }
                 ?>> Male
                 <input type="radio" name="gender" value="female" required style="margin-left: 5rem;" <?php
-                    if($result_student_id['gender'] == 'female'){
+                    if($result['gender'] == 'female'){
                         echo "checked";
                     }
                 ?>> Female
             </div>
-            <input type="date" name="date_of_birth" value="<?php echo $result_student_id['DOB']; ?>" class="box" />
+            <input type="date" name="date_of_birth" value="<?php echo $result['DOB']; ?>" class="box" />
             <select name="course" class="box">
                 <option value="Not Selected">Select your course</option>
                 <option value="BCA" <?php
-                    if($result_student_id['course'] == 'BCA'){
+                    if($result['course'] == 'BCA'){
                         echo "selected";
                     }
                 ?>>BCA</option>
                 <option value="BBA" <?php
-                    if($result_student_id['course'] == 'BBA'){
+                    if($result['course'] == 'BBA'){
                         echo "selected";
                     }
                 ?>>BBA</option>
                 <option value="B.COM" <?php
-                    if($result_student_id['course'] == 'B.COM'){
+                    if($result['course'] == 'B.COM'){
                         echo "selected";
                     }
                 ?>>B.COM</option>
                 <option value="B.TECH" <?php
-                    if($result_student_id['course'] == 'B.TECH'){
+                    if($result['course'] == 'B.TECH'){
                         echo "selected";
                     }
                 ?>>B.TECH</option>
                 <option value="B.sc" <?php
-                    if($result_student_id['course'] == 'B.sc'){
+                    if($result['course'] == 'B.sc'){
                         echo "selected";
                     }
                 ?>>B.sc</option>
                 <option value="MSCIT" <?php
-                    if($result_student_id['course'] == 'MSCIT'){
+                    if($result['course'] == 'MSCIT'){
                         echo "selected";
                     }
                 ?>>MSCIT</option>
@@ -178,13 +178,13 @@
                 ?>> Cooking
                 </div>
             </div>
-            <input type="text" name="email" placeholder="Email ID" value="<?= $result_student_id['email']; ?>" required
+            <input type="text" name="email" placeholder="Email ID" value="<?= $result['email']; ?>" required
                 class="box" />
-            <input type="text" name="phone_no" placeholder="Phone Number" value="<?= $result_student_id['phone_no']; ?>"
+            <input type="text" name="phone_no" placeholder="Phone Number" value="<?= $result['phone_no']; ?>"
                 required class="box" />
                 
             <textarea name="address" rows="5" placeholder="Address"
-                class="box my_textarea"><?php echo $result_student_id['address']; ?></textarea>
+                class="box my_textarea"><?php echo $result['address']; ?></textarea>
             <div class="my-flex-btn">
                 <input type="submit" value="save" name="update" class="option-btnf" />
                 <a href="student_home.php" class="delete-btnf">go back</a>
