@@ -35,14 +35,14 @@
 
         $full_name = $fname." ".$lname;
 
-            if($fileName){
-                $folder = 'uploaded_images/students/'.$fileName;
-                move_uploaded_file($tempName, $folder);
-                unlink($result['student_img']); 
-                $errMSG = "New Profile Picture Update!!!";
-            }else{
-                $folder = $result['student_img'];
-            }
+        if($fileName){
+            $folder = 'uploaded_images/students/'.$fileName;
+            move_uploaded_file($tempName, $folder);
+            unlink($result['student_img']); 
+            $errMSG = "New Profile Picture Update!!!";
+        }else{
+            $folder = $result['student_img'];
+        }
 
             if(!isset($errMsg)){
                     $update_student = "UPDATE `students` SET student_img = '$folder',fname = '$fname', lname = '$lname', gender = '$gender', DOB = '$date_of_birth', course='$course', hobbies='$hobbies_str', email = '$email', phone_no = '$phone_no', address ='$address' ,fees='$feeStatus' WHERE id = '$stud_id'";
@@ -95,7 +95,7 @@
     ?>
 
     <section class="form-container">
-        <form action="" method="post" onsubmit="return validatePhoneNumber();">
+        <form action="" method="post"  onsubmit="return validatePhoneNumber();" enctype="multipart/form-data">
             <h3>update student's  details</h3>
 
             <input type="text" name="stud_id" placeholder="Stud ID (Ex: p101)" readonly
@@ -106,13 +106,13 @@
             <input type="text" name="lname" placeholder="Last Name" value="<?= $result['lname']; ?>" required
                 class="box" />
             <div class="box">
-                <input type="radio" name="gender" value="male" required <?php
-                    if($result['gender'] == 'male'){
+                <input type="radio" name="gender" value="Male" required <?php
+                    if($result['gender'] == 'Male'){
                         echo "checked";
                     }
                 ?>> Male
-                <input type="radio" name="gender" value="female" required style="margin-left: 5rem;" <?php
-                    if($result['gender'] == 'female'){
+                <input type="radio" name="gender" value="Female" required style="margin-left: 5rem;" <?php
+                    if($result['gender'] == 'Female'){
                         echo "checked";
                     }
                 ?>> Female

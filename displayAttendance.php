@@ -10,44 +10,22 @@
         header('location:student_login.php');
     }
 
-// Get the current date and month
-$currentDate = date('Y-m-d');
-$currentMonth = date('m');
-
-// Calculate total number of days present up to the current date in the month
-$query = "SELECT COUNT(*) AS total_days_present
+     // Get the current date and month
+     $currentDate = date('Y-m-d');
+     $currentMonth = date('m');
+ 
+     // Calculate total number of days present up to the current date in the month
+     $query = "SELECT COUNT(DISTINCT DATE(date)) AS total_days_present
           FROM attendance
           WHERE student_id = '$stud_id'
           AND MONTH(date) = '$currentMonth'
           AND YEAR(date) = YEAR(CURRENT_DATE())
           AND date <= '$currentDate'";
 
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($result);
-$total_days_present = $row['total_days_present'];
-
-// Calculate total number of working days up to the current date in the month
-$total_working_days = getTotalWorkingDaysInMonth(date('Y'), $currentMonth);
-
-// Calculate attendance percentage
-$attendance_percentage = ($total_days_present / $total_working_days) * 100;
-
-function getTotalWorkingDaysInMonth($year, $month) {
-    $totalDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-    $workingDays = 0;
-
-    for ($day = 1; $day <= $totalDays; $day++) {
-        $date = "$year-$month-$day";
-        $dayOfWeek = date('N', strtotime($date)); // 1 (Monday) to 7 (Sunday)
-
-        // Exclude Sundays (dayOfWeek = 7)
-        if ($dayOfWeek != 7) {
-            $workingDays++;
-        }
-    }
-
-    return $workingDays;
-}
+     $result = mysqli_query($conn, $query);
+     $row = mysqli_fetch_assoc($result);
+     $total_days_present = $row['total_days_present'];
+ 
 
 ?>
 
@@ -64,26 +42,35 @@ function getTotalWorkingDaysInMonth($year, $month) {
     <link rel="stylesheet" href="css/user_style1.css" />
 
     <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: large;
+        }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: large;
+        table tbody tr:hover {
+    background-color: #e9ecef;
 }
+        table th,
+        table td {
+            padding: 10px;
+            border: 3px solid #ccc;
+            text-align: left;
+        }
 
-table th,
-table td {
-    padding: 10px;
-    border: 3px solid #ccc;
-    text-align: left;
-}
+        table th {
+            background-color: #007bff;
+            color: #fff;
+        }
 
-table th {
-    background-color: #007bff;
-    color: #fff;
-}
+        .present {
+            background-color: lightgreen;
+        }
 
+        .absent {
+            background-color: lightcoral;
+        }
     </style>
 </head>
 
@@ -91,47 +78,48 @@ table th {
     <?php include 'components/student_header.php'; ?>
 
     <section class="Attendance">
-
+    
         <h1 class="heading">Student Attendance</h1>
-        <p>Attendance Percentage: <?php echo $attendance_percentage; ?>%</p>
+        <h2>Total Days Present in Current Month: <?php echo $total_days_present; ?></h2>
         <br><br>
         <div id="attendanceTable">
             <?php
-             $query = "SELECT a.date, a.status, s.fname, s.lname
-             FROM attendance a
-             INNER JOIN students s ON a.student_id = s.id
-             WHERE s.id = '$stud_id'
-             ORDER BY a.date DESC";
+            $query = "SELECT a.date, a.status, s.fname, s.lname,a.lecture
+                      FROM attendance a
+                      INNER JOIN students s ON a.student_id = s.id
+                      WHERE s.id = '$stud_id'
+                      ORDER BY a.date DESC";
 
-   $result = mysqli_query($conn, $query);
+            $result = mysqli_query($conn, $query);
 
-   if (mysqli_num_rows($result) > 0) {
-       echo '<table>
-               <tr>
-                   <th>Date</th>
-                   <th>Status</th>
-                   <th>Student Name</th>
-               </tr>';
+            if (mysqli_num_rows($result) > 0) {
+                echo '<table>
+                        <tr>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Lecture</th>
+                        </tr>';
 
-       while ($row = mysqli_fetch_assoc($result)) {
-           echo '<tr>
-                   <td>' . $row['date'] . '</td>
-                   <td>' . $row['status'] . '</td>
-                   <td>' . $row['fname'] . '  '.$row['lname'].'</td>
-                 </tr>';
-       }
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $statusClass = ($row['status'] == 'present') ? 'present' : 'absent';
+                            echo '<tr class="' . $statusClass . '">
+                                    <td>' . $row['date'] . '</td>
+                                    <td>' . $row['status'] . '</td>
+                                    <td>' . $row['lecture'] . '</td>
+                                  </tr>';
+                        }
+                        
 
-       echo '</table>';
-   } else {
-       echo 'No records found';
-   }
+                echo '</table>';
+            } else {
+                echo 'No records found';
+            }
             ?>
         </div>
 
     </section>
-    
-</body>
 
+</body>
 
 <script src="js/user_logic1.js"></script>
 </html>

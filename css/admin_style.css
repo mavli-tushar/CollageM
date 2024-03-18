@@ -328,7 +328,7 @@ section {
 .dashboard .box-container .box {
   text-align: center;
   background-color: var(--white);
-  border: var(--border);
+ 
   border-radius: 1em;
   box-shadow: var(--box-shadow);
   padding: 3rem;

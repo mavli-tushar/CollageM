@@ -109,7 +109,37 @@ table th {
     background-color: #007bff;
     color: #fff;
 }
+table tbody tr:hover {
+    background-color: #e9ecef;
+}
+.custom-btn {
+    
+    display: inline;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border: 0.5px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
 
+.custom-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+     .present {
+            background-color: lightgreen;
+        }
+
+        .absent {
+            background-color: lightcoral;
+        }
     </style>
 </head>
 
@@ -151,7 +181,7 @@ table th {
                         <option value="lec-3">lecture-3</option>
                 </select>
             </div>
-            <button type="submit">Filter</button>
+            <button class="custom-btn" type="submit">Filter</button>
         </form>
 
         <br><br>

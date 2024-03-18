@@ -194,6 +194,6 @@
 
 </body>
 
-<script src="../js/admin_logic1.js"></script>
+<script src="js/admin_logic1.js"></script>
 
 </html>

@@ -91,7 +91,7 @@ if(!isset($admin_id)){
     <section class="form-container">
 
         <form action="" method="post" enctype="multipart/form-data" onsubmit="return validatePhoneNumber();">
-            <h3>update student details</h3>
+            <h3>Update Faculty Details</h3>
 
             <input type="text" name="stud_id" readonly
                 value="<?= $result_faculty_id['id']; ?>" required class="box" />

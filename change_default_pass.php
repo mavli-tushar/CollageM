@@ -119,6 +119,6 @@ if(!isset($main_stud_id)){
 
 </body>
 
-<script src="../js/user_logic1.js"></script>
+<script src="js/user_logic1.js"></script>
 
 </html>

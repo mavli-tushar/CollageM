@@ -29,7 +29,8 @@ if (isset($_POST['course']) && isset($_POST['year']) && isset($_POST['division']
                 </tr>';
 
         while ($row = mysqli_fetch_assoc($result)) {
-            echo '<tr>
+            $statusClass = ($row['status'] == 'present') ? 'present' : 'absent';
+            echo '<tr class="' . $statusClass . '">
                     <td>' . $row['date'] . '</td>
                     <td>' . $row['status'] . '</td>
                     <td>' . $row['fname'] . '</td>
