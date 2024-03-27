@@ -32,12 +32,12 @@
             $data = mysqli_query($conn, $insert_user);
 
             if($data){
-                $message[] = 'new student registered!';
+                echo "<script>alert('Student added successfully!'); window.location.href = 'displayStud.php';</script>";
                
             }else{
                 $message[] = 'failed to add new student!';
             }
-            header('location:displayStud.php');
+            // header('location:displayStud.php');
             exit();
         }
 
@@ -128,7 +128,7 @@
             <input type="text" id="phone_no" name="phone_no" placeholder="Contact Number" class="box" />
             <span id="phone_error" style="color: red; display: none;">Contact number must be 10 digits</span>
             <select name="fees" class="box">
-                <option value="Not Selected">Fees Status</option>
+                <option value="Not Selected" disabled Selected>Fees Status</option>
                 <option value="Remaining">Remaining</option>
                 <option value="Paid">Paid</option>
             </select>

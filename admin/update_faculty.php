@@ -45,8 +45,8 @@ if(!isset($admin_id)){
             $data = mysqli_query($conn, $update_user);
 
             if($data){
-                $message[] = 'update data successfully!';
-                header('location:displayFac.php');
+                echo "<script>alert('Update successfully!'); window.location.href = 'displayFac.php';</script>";
+                // header('location:displayFac.php');
             }else{
                 $message[] = 'failed to update data!';
             }

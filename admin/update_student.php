@@ -36,24 +36,25 @@
         $full_name = $fname." ".$lname;
 
         if($fileName){
-            $folder = 'uploaded_images/students/'.$fileName;
+            $folder = '../uploaded_images/students/'.$fileName;
             move_uploaded_file($tempName, $folder);
             unlink($result['student_img']); 
+            $path   = 'uploaded_images/students/'.$fileName;
             $errMSG = "New Profile Picture Update!!!";
         }else{
             $folder = $result['student_img'];
         }
 
             if(!isset($errMsg)){
-                    $update_student = "UPDATE `students` SET student_img = '$folder',fname = '$fname', lname = '$lname', gender = '$gender', DOB = '$date_of_birth', course='$course', hobbies='$hobbies_str', email = '$email', phone_no = '$phone_no', address ='$address' ,fees='$feeStatus' WHERE id = '$stud_id'";
+                    $update_student = "UPDATE `students` SET student_img = '$path',fname = '$fname', lname = '$lname', gender = '$gender', DOB = '$date_of_birth', course='$course', hobbies='$hobbies_str', email = '$email', phone_no = '$phone_no', address ='$address' ,fees='$feeStatus' WHERE id = '$stud_id'";
                     $data = mysqli_query($conn, $update_student);
                 
                     $update_user = "UPDATE `users` SET name = '$full_name', email = '$email' WHERE stud_id = '$stud_id'";
                     $data = mysqli_query($conn, $update_user);
 
                 if($data){
-                    $message[] = 'update data successfully!';
-                    header('location:displayStud.php');
+                    echo "<script>alert('Update successfully!'); window.location.href = 'displayStud.php';</script>";
+                    // header('location:displayStud.php');
                 }else{
                     $message[] = 'failed to update data!';
                 }
@@ -100,7 +101,7 @@
 
             <input type="text" name="stud_id" placeholder="Stud ID (Ex: p101)" readonly
                 value="<?= $result['id']; ?>" required class="box" />
-            <input type="file" name="profile_pic" class="box" />
+            <input type="file" name="profile_pic" class="box" / required>
             <input type="text" name="fname" placeholder="First Name" value="<?= $result['fname']; ?>"
                 required class="box" />
             <input type="text" name="lname" placeholder="Last Name" value="<?= $result['lname']; ?>" required
@@ -185,7 +186,7 @@
                 <span id="phone_error" style="color: red; display: none;">Contact number must be 10 digits</span>
 
             <select name="fees" class="box">
-                <option value="Not Selected">Fees Status</option>
+                <option value="Not Selected" selected disabled>Fees Status</option>
                 <option value="Remaining">Remaining</option>
                 <option value="Paid">Paid</option>
             </select>

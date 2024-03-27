@@ -30,8 +30,8 @@
         $data = mysqli_query($conn, $update_user);
 
         if($data){
-            $message[] = 'update data successfully!';
-            header('location:displayPeon.php');
+            echo "<script>alert('Update successfully!'); window.location.href = 'displayPeon.php';</script>";
+            // header('location:displayPeon.php');
         }else{
             $message[] = 'failed to update data!';
         }

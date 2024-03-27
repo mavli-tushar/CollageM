@@ -27,12 +27,12 @@
             $data = mysqli_query($conn, $insert_user);
 
             if($data){
-                $message[] = 'new faculty registered!';
+                echo "<script>alert('Faculty added successfully!'); window.location.href = 'displayFac.php';</script>";
                 
             }else{
                 $message[] = 'failed to add new faculty!';
             }
-             header('location:displayFac.php');
+            //  header('location:displayFac.php');
     }
 ?>
 

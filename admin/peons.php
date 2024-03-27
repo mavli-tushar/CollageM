@@ -27,7 +27,7 @@
 
             if($data){
                 $message[] = 'new Peon registered!';
-                header('location:dashboard.php');
+                echo "<script>alert('Peon added successfully!'); window.location.href = 'peons.php';</script>";
             }else{
                 $message[] = 'failed to add new peon!';
             }

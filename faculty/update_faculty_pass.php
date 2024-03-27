@@ -88,7 +88,7 @@
 
     <section class="form-container">
         <form action="" method="post">
-            <h3>update profile</h3>
+            <h3>Update Password</h3>
 
             <input type="text" name="name" placeholder="Admin ID" disabled required class="box"
                 value="<?= $result_faculty_id['id']; ?>" />

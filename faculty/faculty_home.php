@@ -51,10 +51,10 @@
 
         <div class="box-container">
 
-            <div class="box">
+            <!-- <div class="box">
                 <h3>Faculty ID</h3>
                 <p><?= $result['id']; ?></p>
-            </div>
+            </div> -->
 
             <div class="box">
                 <h3>Email ID</h3>

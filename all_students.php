@@ -48,7 +48,7 @@
                 <div class="my-flex-box">
                     <image src="<?php echo $fetch_students['student_img']; ?>" class="all_image" />
                 </div>
-                <div class='id'> Student ID : <?= $fetch_students['id']; ?></div>
+                <!-- <div class='id'> Student ID : <?= $fetch_students['id']; ?></div> -->
                 <div class="name"> Name : <?= $fetch_students['fname']." ".$fetch_students['lname']; ?></div>
                 <div class="detail"> Email : <?= $fetch_students['email']; ?></div>
                 <div class="detail"> DOB : <?= $fetch_students['DOB']; ?></div>

@@ -87,7 +87,7 @@ if(isset($_POST['update'])){
 
     <section class="form-container">
         <form action="" method="post">
-            <h3>update profile</h3>
+            <h3>update Password</h3>
 
             <input type="hidden" name="prev_password" value="<?= $result['password']; ?>">
             <input type="text" name="name" placeholder="Admin ID" disabled required class="box"

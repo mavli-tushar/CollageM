@@ -38,12 +38,15 @@
                 $data = mysqli_query($conn, $insert_assignment);
                     
                     if($data){
-                        $message[] = 'assignment added successfully!';
+                        echo "<script>alert('Assignment added successfully!'); window.location.href = 'assignments.php';</script>";
                     }
+                    
             }else{
                 $message[] = 'Failed to upload file.';
             }
+           
         }
+
     }
 
     if(isset($_GET['delete'])){

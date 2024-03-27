@@ -105,7 +105,7 @@ background-color: var(--orange);
                 <div class="my-flex-box">
                     <image src="<?php echo '../'.$fetch_student['student_img'] ?>" class="all_image" />
                 </div>
-                <div class="id">Student ID : <?= $fetch_student['id']; ?></div>
+                <!-- <div class="id">Student ID : <?= $fetch_student['id']; ?></div> -->
                 <div class="name"><?= $fetch_student['fname']." ".$fetch_student['lname']; ?></div>
                 <div class="content"><?= $fetch_student['email']; ?></div>
                 <div class="detail">Gender : <?= $fetch_student['gender']; ?></div>

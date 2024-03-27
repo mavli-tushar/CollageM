@@ -52,7 +52,7 @@
          while($fetch_message = mysqli_fetch_assoc($data)){ 
         ?>
             <div class="box">
-                <?php
+                <!-- <?php
                     $faculty_id = $fetch_message['faculty_id'];
                     $stud_id = $fetch_message['stud_id'];
 
@@ -61,7 +61,7 @@
                     }else {
                         echo "<div class='id'> Student ID : ".$fetch_message['stud_id']."</div>";
                     }
-                ?>
+                ?> -->
                 <div class="name"> Name : <?= $fetch_message['name']; ?></div>
                 <div class="detail"> Email : <?= $fetch_message['email']; ?></div>
                 <div class="detail"> Contact No : <?= $fetch_message['phone_no']; ?></div>

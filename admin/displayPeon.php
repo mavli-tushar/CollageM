@@ -53,7 +53,7 @@
          while($fetch_peon = mysqli_fetch_assoc($data)){ 
         ?>
             <div class="box">
-                <div class="id"> Peon ID : <?= $fetch_peon['id']; ?></div>
+                <!-- <div class="id"> Peon ID : <?= $fetch_peon['id']; ?></div> -->
                 <div class="name"> Name : <?= $fetch_peon['name']; ?></div>
                 <div class="detail"> Email : <?= $fetch_peon['email']; ?></div>
                 <div class="detail"> Contact No : <?= $fetch_peon['phone_no']; ?></div>

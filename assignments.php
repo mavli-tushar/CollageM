@@ -71,7 +71,7 @@
          while($fetch_assignment = mysqli_fetch_assoc($data)){ 
         ?>
             <div class="box">
-                <div class='id'> Faculty ID : <?= $fetch_assignment['faculty_id']; ?></div>
+                <!-- <div class='id'> Faculty ID : <?= $fetch_assignment['faculty_id']; ?></div> -->
                 <div class="name"> Subject Name : <?= $fetch_assignment['subject_name']; ?></div>
                 <div class="content"> File Name : <?= $fetch_assignment['pdf_file']; ?></div>
                 <div class="content"> Faculty Name : <?= $fetch_assignment['faculty_name']; ?></div>
