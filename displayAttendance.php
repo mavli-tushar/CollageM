@@ -84,7 +84,7 @@
         <br><br>
         <div id="attendanceTable">
             <?php
-            $query = "SELECT a.date, a.status, s.fname, s.lname,a.lecture
+            $query = "SELECT a.date, a.status, s.fname, s.lname,a.lecture,a.subject
                       FROM attendance a
                       INNER JOIN students s ON a.student_id = s.id
                       WHERE s.id = '$stud_id'
@@ -98,6 +98,7 @@
                             <th>Date</th>
                             <th>Status</th>
                             <th>Lecture</th>
+                            <th>Subject</th>
                         </tr>';
 
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -106,6 +107,7 @@
                                     <td>' . $row['date'] . '</td>
                                     <td>' . $row['status'] . '</td>
                                     <td>' . $row['lecture'] . '</td>
+                                    <td>' . $row['subject'] . '</td>
                                   </tr>';
                         }
                         

@@ -14,12 +14,13 @@ if(isset($_POST['submit_attendance'])){
     $selectedCourse = $_POST['course'];
     $attendanceRecords = $_POST['attendance'];
     $selectedLecture = $_POST['lecture'];
+    $subject = $_POST['subject'];
     $date = date('Y-m-d');
 
     foreach($attendanceRecords as $studentId => $record){
         $status = $record['status'];
         // Insert attendance record for each student
-        $query = "INSERT INTO attendance (student_id, course_name, date, lecture, status) VALUES ('$studentId', '$selectedCourse', '$date', '$selectedLecture', '$status')";
+        $query = "INSERT INTO attendance (student_id, course_name, date, lecture, status,subject) VALUES ('$studentId', '$selectedCourse', '$date', '$selectedLecture', '$status','$subject')";
         $data = mysqli_query($conn, $query);
     }
 
@@ -164,6 +165,18 @@ if(isset($_POST['submit_attendance'])){
     text-decoration: none;
 
 }
+
+.custom-table p {
+    padding: 1.5rem;
+    background-color: var(--white);
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    color: var(--red);
+    border-radius: 0.5rem;
+    font-size: 2rem;
+    text-transform: capitalize;
+}
     </style>
 </head>
 <body>
@@ -174,7 +187,7 @@ if(isset($_POST['submit_attendance'])){
         <form method="post" id="attendanceSubmitForm">
             <div class="row">
                 <select class="col-md-4" name="course" id="coursSelected" required>
-                    <option>Select Course</option>
+                    <option disabled Selected>Select Course</option>
                     <?php
                     $query = "SELECT * FROM course";
                     $run = mysqli_query($conn, $query);
@@ -184,19 +197,23 @@ if(isset($_POST['submit_attendance'])){
                     ?>
                 </select>
                 <select class="col-md-4" name="year" id="year" required>
-                    <option>Select Year</option>
+                    <option disabled Selected>Select Year</option>
                     <option value="Fy">First Year</option>
                     <option value="Sy">Second Year</option>
                     <option value="Ty">Third Year</option>
                 </select>
                 <select name="division" id="division" required>
-                    <option>Select division</option>
+                    <option disabled Selected>Select division</option>
                     <option value="Div-1">Div-1</option>
                     <option value="Div-2">Div-2</option>
                     <option value="Div-3">Div-3</option>
                 </select>
-                <select name="lecture" id="lecture" required>
-                    <option>Select Lecture</option>
+                <select name="subject" id="subject" required >
+                <option disabled Selected>Select Subject</option>
+    
+                </select>
+                <select name="lecture" id="lecture" required >
+                    <option disabled Selected>Select Lecture</option>
                     <option value="lec-1">Lecture-1</option>
                     <option value="lec-2">Lecture-2</option>
                     <option value="lec-3">Lecture-3</option>
@@ -206,7 +223,7 @@ if(isset($_POST['submit_attendance'])){
             <table class="custom-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <!-- <th>ID</th> -->
                         <th>Name</th>
                         <th>Email</th>
                         <th>Contact No</th>
@@ -232,6 +249,7 @@ if(isset($_POST['submit_attendance'])){
             var year = document.getElementById('year').value;
             var division = document.getElementById('division').value;
             fetchStudents(course, year, division);
+            fetchSubject(course, year);
         });
 
         document.getElementById('year').addEventListener('change', function() {
@@ -239,6 +257,7 @@ if(isset($_POST['submit_attendance'])){
             var year = document.getElementById('year').value;
             var division = document.getElementById('division').value;
             fetchStudents(course, year, division);
+            fetchSubject(course, year);
         });
 
         document.getElementById('division').addEventListener('change', function() {
@@ -264,6 +283,22 @@ if(isset($_POST['submit_attendance'])){
             })
             .catch(error => console.error('Error:', error));
         }
+
+        function fetchSubject(course, year){
+    var formData = new FormData();
+    formData.append('course',course);
+    formData.append('year',year);
+    
+    fetch('fetch_subject.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('subject').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+}
     </script>
 </body>
 </html>

@@ -106,13 +106,13 @@
             <input type="text" name="lname" placeholder="Last Name" value="<?= $result['lname']; ?>" required
                 class="box" />
             <div class="box">
-                <input type="radio" name="gender" value="male" required <?php
-                    if($result['gender'] == 'male'){
+                <input type="radio" name="gender" value="Male" required <?php
+                    if($result['gender'] == 'Male'){
                         echo "checked";
                     }
                 ?>> Male
-                <input type="radio" name="gender" value="female" required style="margin-left: 5rem;" <?php
-                    if($result['gender'] == 'female'){
+                <input type="radio" name="gender" value="Female" required style="margin-left: 5rem;" <?php
+                    if($result['gender'] == 'Female'){
                         echo "checked";
                     }
                 ?>> Female

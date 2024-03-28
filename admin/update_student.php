@@ -42,7 +42,7 @@
             $path   = 'uploaded_images/students/'.$fileName;
             $errMSG = "New Profile Picture Update!!!";
         }else{
-            $folder = $result['student_img'];
+            $path = $result['student_img'];
         }
 
             if(!isset($errMsg)){
@@ -101,7 +101,7 @@
 
             <input type="text" name="stud_id" placeholder="Stud ID (Ex: p101)" readonly
                 value="<?= $result['id']; ?>" required class="box" />
-            <input type="file" name="profile_pic" class="box" / required>
+            <input type="file" name="profile_pic" class="box" / >
             <input type="text" name="fname" placeholder="First Name" value="<?= $result['fname']; ?>"
                 required class="box" />
             <input type="text" name="lname" placeholder="Last Name" value="<?= $result['lname']; ?>" required
@@ -187,8 +187,8 @@
 
             <select name="fees" class="box">
                 <option value="Not Selected" selected disabled>Fees Status</option>
-                <option value="Remaining">Remaining</option>
-                <option value="Paid">Paid</option>
+                <option value="Remaining"  <?php if ($result['fees']== "Remaining" )echo 'selected'; ?>>Remaining</option>
+                <option value="Paid" <?php if ($result['fees']== "Paid" ) echo 'selected'; ?>>Paid</option>
             </select>
             
             <textarea name="address" rows="5" placeholder="Address"

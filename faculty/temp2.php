@@ -7,9 +7,12 @@ if(isset($_POST['course'])) {
     $selectedDivision = $_POST['division'];
     $query = "SELECT * FROM students WHERE course='$selectedCourse' AND year='$selectedYear' AND division='$selectedDivision'";
     $run = mysqli_query($conn, $query);
+
+$total = mysqli_num_rows($run);
+if($total > 0){
     while ($row = mysqli_fetch_array($run)) {
         echo "<tr>";
-        echo "<td>" . $row['id'] . "</td>";
+        // echo "<td>" . $row['id'] . "</td>";
         echo "<td>" . $row['fname'] . "</td>";
         echo "<td>" . $row['email'] . "</td>";
         echo "<td>".$row['phone_no']."</td>";
@@ -22,5 +25,8 @@ if(isset($_POST['course'])) {
         echo "</td>";
         echo "</tr>";
     }
+}else{
+    echo '<tr><td colspan="4" style="text-align:center";>Data not found</td></tr>';
+}
 }
 ?>

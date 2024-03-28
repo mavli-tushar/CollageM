@@ -8,7 +8,7 @@ if (isset($_POST['course']) && isset($_POST['year']) && isset($_POST['division']
     $division = $_POST['division'];
     $lecture = $_POST['lecture'];
     
-    $query = "SELECT a.date, a.status,a.lecture, s.fname
+    $query = "SELECT a.date, a.status,a.lecture, a.subject,s.fname
               FROM attendance a
               INNER JOIN students s ON a.student_id = s.id
               WHERE a.course_name = '$course'
@@ -26,6 +26,7 @@ if (isset($_POST['course']) && isset($_POST['year']) && isset($_POST['division']
                     <th>Status</th>
                     <th>Student Name</th>
                     <th>lecture</th>
+                    <th>subject</th>
                 </tr>';
 
         while ($row = mysqli_fetch_assoc($result)) {
@@ -35,6 +36,7 @@ if (isset($_POST['course']) && isset($_POST['year']) && isset($_POST['division']
                     <td>' . $row['status'] . '</td>
                     <td>' . $row['fname'] . '</td>
                     <td>' . $row['lecture'] . '</td>
+                    <td>' . $row['subject'] . '</td>
                   </tr>';
         }
 
