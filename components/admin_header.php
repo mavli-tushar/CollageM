@@ -31,7 +31,7 @@
 
 
         <nav class="navbar">
-            <a href="../admin/dashboard.php">home</a>
+            <!-- <a href="../admin/dashboard.php">home</a> -->
             <a href="../admin/notices.php">notices</a>
             <a href="../admin/students.php">students</a>
             <a href="../admin/faculties.php">faculties</a>
@@ -40,6 +40,7 @@
             <a href="../admin/user_accounts.php">users</a>
             <a href="../admin/messages.php">messages</a>
             <a href="../admin/search.php">Search</a>
+            <a href="../admin/subject.php">Subject</a>
             
         </nav>
 
