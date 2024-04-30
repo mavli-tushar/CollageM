@@ -82,7 +82,7 @@
 
     <?php include '../components/admin_header.php'; ?>
     <button class="custom-btn"><a href="displayFac.php" class="btn-link">View Facultys</a></button>
-    <section class="form-container">
+    <section class="form-containerRegister">
         
         <form action="" method="post"  onsubmit="return validatePhoneNumber();">
             <h3>add new faculty</h3>

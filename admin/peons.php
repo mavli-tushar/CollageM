@@ -94,7 +94,7 @@
 
     <?php include '../components/admin_header.php'; ?>
     <button class="custom-btn"><a href="displayPeon.php" class="btn-link">View Peon</a></button>
-    <section class="form-container">
+    <section class="form-containerRegister">
         <form action="" method="post" onsubmit="return validatePhoneNumber();">
             <h3>add new peon</h3>
             <input type="text" name="name" placeholder="Peon Name" required class="box" />

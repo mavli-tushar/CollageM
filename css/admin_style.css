@@ -186,7 +186,7 @@ section {
 .form-container form {
   background-color: var(--white);
   border-radius: 10rem;
-  margin-left: 15rem;
+ 
   box-shadow: var(--box-shadow);
   text-align: center;
   padding: 2rem;
@@ -225,6 +225,60 @@ section {
   border: var(--border);
   border-radius: 0.5rem;
 }
+
+
+.form-containerRegister {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.form-containerRegister form {
+  background-color: var(--white);
+  border-radius: 10rem;
+  margin-left: 15rem;
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  padding: 2rem;
+  width: 75rem;
+  color: black;
+  box-shadow: 0px 5px 20px rgb(0,0,0);
+}
+
+.form-containerRegister form h3 {
+  text-transform: capitalize;
+  font-size: 2.8rem;
+  color: var(--main-color);
+  margin-bottom: 2rem;
+}
+
+.form-containerRegister form p {
+  font-size: 1.8rem;
+  color: var(--light-color);
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  float: left;
+  margin-top: 1rem;
+}
+
+.form-containerRegister form p span {
+  color: var(--orange);
+}
+
+.form-containerRegister form .box {
+  width: 100%;
+  background-color: var(--light-bg);
+  padding: 1.4rem;
+  font-size: 1.8rem;
+  color: var(--black);
+  margin: 1rem 0;
+  border: var(--border);
+  border-radius: 0.5rem;
+}
+
+
+
 
 .header {
   position: sticky;

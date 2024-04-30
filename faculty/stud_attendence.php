@@ -289,7 +289,7 @@ if(isset($_POST['submit_attendance'])){
     formData.append('course',course);
     formData.append('year',year);
     
-    fetch('fetch_subject.php', {
+    fetch('fetch_subject.php',{
         method: 'POST',
         body: formData
     })

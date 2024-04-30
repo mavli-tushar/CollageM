@@ -232,8 +232,8 @@ body {
                     <tr>
                         <th>Admin ID</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Contact</th>
+                        <th>Course</th>
+                        <th>Year</th>
                         <th>Actions</th>
                         
                     </tr>

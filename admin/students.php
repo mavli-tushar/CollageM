@@ -88,7 +88,7 @@
 
     <?php include '../components/admin_header.php'; ?>
     <button class="custom-btn"><a href="displayStud.php" class="btn-link">View Students</a></button>
-    <section class="form-container">
+    <section class="form-containerRegister">
     
         <form action="" method="post" autocomplete="on" enctype="multipart/form-data" onsubmit="return validatePhoneNumber();">
             <h3>Add New Student</h3>
